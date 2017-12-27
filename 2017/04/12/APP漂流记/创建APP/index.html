@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>崇山峻岭</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言: 本日记主要描写了一个app从开始到长大的过程, 笔者目前已经工作了半年多, 但是从来没有单独写过项目. 虽然公司任务比较轻松, 但是笔者危机意识还是比较强的, 看着日趋饱和的iOS开发市场和身边一个一个离职之后找工作的艰难, 我觉得能独立开发一个APP应该是作为一个iOS开发者必备的技能, 因此趁着目前工作还算稳定, 打算亲自写一个app, 而本栏目就是为了记录在App中遇到的各种坑.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="崇山峻岭">
+<meta property="og:url" content="http://yoursite.com/2017/04/12/APP漂流记/创建APP/index.html">
+<meta property="og:site_name" content="崇山峻岭">
+<meta property="og:description" content="前言: 本日记主要描写了一个app从开始到长大的过程, 笔者目前已经工作了半年多, 但是从来没有单独写过项目. 虽然公司任务比较轻松, 但是笔者危机意识还是比较强的, 看着日趋饱和的iOS开发市场和身边一个一个离职之后找工作的艰难, 我觉得能独立开发一个APP应该是作为一个iOS开发者必备的技能, 因此趁着目前工作还算稳定, 打算亲自写一个app, 而本栏目就是为了记录在App中遇到的各种坑.">
+<meta property="og:updated_time" content="2017-04-12T06:17:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="崇山峻岭">
+<meta name="twitter:description" content="前言: 本日记主要描写了一个app从开始到长大的过程, 笔者目前已经工作了半年多, 但是从来没有单独写过项目. 虽然公司任务比较轻松, 但是笔者危机意识还是比较强的, 看着日趋饱和的iOS开发市场和身边一个一个离职之后找工作的艰难, 我觉得能独立开发一个APP应该是作为一个iOS开发者必备的技能, 因此趁着目前工作还算稳定, 打算亲自写一个app, 而本栏目就是为了记录在App中遇到的各种坑.">
+  
+    <link rel="alternate" href="/atom.xml" title="崇山峻岭" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">崇山峻岭</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">这是一个神奇的网站</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-APP漂流记/创建APP" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/12/APP漂流记/创建APP/" class="article-date">
+  <time datetime="2017-04-12T06:17:17.000Z" itemprop="datePublished">2017-04-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>前言:</strong> 本日记主要描写了一个app从开始到长大的过程, 笔者目前已经工作了半年多, 但是从来没有单独写过项目. 虽然公司任务比较轻松, 但是笔者危机意识还是比较强的, 看着日趋饱和的iOS开发市场和身边一个一个离职之后找工作的艰难, 我觉得能独立开发一个APP应该是作为一个iOS开发者必备的技能, 因此趁着目前工作还算稳定, 打算亲自写一个app, 而本栏目就是为了记录在App中遇到的各种坑.  APP就是我目前公司的项目, 因为涉及到隐私的东西, 所以本日记仅仅记录开发中遇到的坑, 而不会将核心代码公布出来, 敬请谅解!!!  哦, 对了, 由于来回切换输入法比较麻烦所以本日记所有标点符号全是英文状态的, 未来大家便于理解, 在标点符号后面我尽量都空出一格.  下面正式进入话题&gt;&gt;&gt;</p>
+<p>由于昨天APP上线搞到很晚, 公司给了半天调休, 所以本文是上午更新, 以后大多数可能是晚上或者周末更新!   今天是APP第一天诞生,  和写一个demo一样, 第一步我们通过Xcode工具创建一个项目.  工欲善其事必先利其器, APP存放我选择的是oschina的码云上面托管, 尽管是一个人在开发, 但是还是按照公司的开发模式进行.  项目采用的是git版本控制, 本地我采用的是SourceTree可是换工具管理代码, 偶尔会使用Xcode自带的工具!</p>
+<p>下面说以下步骤:</p>
+<ol>
+<li>在”码云”上创建一个仓库, 创建时一定勾选上忽略文件(.gitignore)这一项, 本项目是oc,所以我勾选了object-c;</li>
+<li>将自己的SSH公钥添加到项目中, 这一步主要是pull或push代码的时候可以免去输入账户和密码的烦恼, 关于ssh如何生成公钥, 如何添加公钥, 等可以自行Google或百度;</li>
+<li>从”码云”上拷贝ssh链接(不要使用http那个,要不然每次推拉代码都需要输入账户和密码), 在sourcetree里面选择从url克隆并粘贴刚刚复制的链接, 静静的等待下载完成</li>
+<li>在Xcode中创建一个工程文件, 选择Single View Application, 将工程创建到你clone下来的文件夹中;</li>
+<li>在sourcetree中将代码推到服务器, OK, 到这里项目初始化完成, 以后就可以开开心心的些项目了!</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/12/APP漂流记/创建APP/" data-id="cjbovtx67000bm8i3jqzyu52c" class="article-share-link">Teilen</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/06/08/数组中取出最大值/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/14/JPush的坑/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/12/27/hello-world/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/24/iOS开发之VFL布局总结/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/18/iOS开发 const 和 static 关键字的作用/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/16/画图/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/08/数组中取出最大值/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 崇山峻岭<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

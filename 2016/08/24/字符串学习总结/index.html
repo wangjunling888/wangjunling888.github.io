@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>崇山峻岭</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="#字符串学习总结 ##1. 创建 //构造方法 NSString *s1 = [[NSString alloc] initWithFormat:@&amp;quot;%@ 真简单&amp;quot;, @&amp;quot;iOS开发&amp;quot;]; //类方法 NSString *s2 = [NSString stringWithFormat:@&amp;quot;%@ 好简单啊&amp;quot;, @&amp;quot;OC&amp;quot;]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="崇山峻岭">
+<meta property="og:url" content="http://yoursite.com/2016/08/24/字符串学习总结/index.html">
+<meta property="og:site_name" content="崇山峻岭">
+<meta property="og:description" content="#字符串学习总结 ##1. 创建 //构造方法 NSString *s1 = [[NSString alloc] initWithFormat:@&amp;quot;%@ 真简单&amp;quot;, @&amp;quot;iOS开发&amp;quot;]; //类方法 NSString *s2 = [NSString stringWithFormat:@&amp;quot;%@ 好简单啊&amp;quot;, @&amp;quot;OC&amp;quot;]">
+<meta property="og:updated_time" content="2016-08-23T16:00:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="崇山峻岭">
+<meta name="twitter:description" content="#字符串学习总结 ##1. 创建 //构造方法 NSString *s1 = [[NSString alloc] initWithFormat:@&amp;quot;%@ 真简单&amp;quot;, @&amp;quot;iOS开发&amp;quot;]; //类方法 NSString *s2 = [NSString stringWithFormat:@&amp;quot;%@ 好简单啊&amp;quot;, @&amp;quot;OC&amp;quot;]">
+  
+    <link rel="alternate" href="/atom.xml" title="崇山峻岭" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">崇山峻岭</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">这是一个神奇的网站</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-字符串学习总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/24/字符串学习总结/" class="article-date">
+  <time datetime="2016-08-23T16:00:31.000Z" itemprop="datePublished">2016-08-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#字符串学习总结</p>
+<p>##1. 创建</p>
+<pre><code>//构造方法
+NSString *s1 = [[NSString alloc] initWithFormat:@&quot;%@ 真简单&quot;, @&quot;iOS开发&quot;];
+//类方法
+NSString *s2 = [NSString stringWithFormat:@&quot;%@ 好简单啊&quot;, @&quot;OC&quot;];
+// 将 C 语言字符串转换成 OC 字符串
+NSString *s3 = [[NSString alloc] initWithUTF8String:&quot;hello iOS&quot;];
+//从文件读取
+NSString *file = [[NSString alloc] initWithContentsOfFile:@&quot;/Users/apple/Desktop/Launchable.h&quot; encoding:NSUTF8StringEncoding error:nil];
+//从url读取
+NSString *html = [[NSString alloc] initWithContentsOfURL:[NSURL URLWithString:@&quot;http://www.youdao.com&quot;] encoding:NSUTF8StringEncoding error:nil];
+</code></pre><p>##2. 查看<br>    //1. 比较<br>    BOOL isEqual = [@”123” isEqualToString:@”123”];<br>    //下面这个方法可以根据options进行排序,常见的有按数字排序(options:NSNumericSearch),<br>    //有按照字符串排序, 还可以根据正则表达式排序<br>    NSComparisonResult result = [@”123” compare:@”124” options:NSNumericSearch]);</p>
+<pre><code>//2. 判断字符串的前后缀, 返回值均为bool类型
+[@&quot;123.txt&quot; hasSuffix:@&quot;.txt&quot;]
+[@&quot;http://www.baidu.com hasPrefix:@&quot;http://&quot;]
+
+//3. 根据range取字符串
+//3.1 从字符串中获得子字符串的range
+ NSRange range = [@&quot;abcdefgcdefg&quot;; rangeOfString:@&quot;acd&quot;];
+ //可以通过判断range.location 判断有没有找到
+ if(range.location == NSNotFound) {
+     NSLog(@&quot;没有找到&quot;);
+ }
+
+
+ //3.2下面是一个例子寻找字符串中所有包含子字符串的位置和长度, 
+   str = @&quot;123abcd456defg123ab45qw&quot;;
+
+
+    NSRange range = NSMakeRange(0, 0);
+    do {
+        NSUInteger loc = range.location + range.length;
+        NSUInteger len = str.length - loc;
+        range = [str rangeOfString:@&quot;3a&quot; options:1 range:NSMakeRange(loc, len)];
+
+        if (range.location != NSNotFound) {
+            NSLog(@&quot;%@&quot;, NSStringFromRange(range));
+        }
+    } while (range.location != NSNotFound);
+
+  //4. 获取子字符串
+  // 子字符串 substring
+    NSString *str = @&quot;0123456789&quot;;
+    NSString *s1 = [str substringFromIndex:5];
+    NSLog(@&quot;%@&quot;, s1);
+    NSString *s2 = [str substringToIndex:5];
+    NSLog(@&quot;%@&quot;, s2);
+    // 在科学计算中有一个习惯, 表示范围的时候, 左边取得到, 右边取不到
+    // arc4random_uniform(10)
+    // 左闭右开区间
+    NSRange range = NSMakeRange(3, 3);
+    NSString *s3 = [str substringWithRange:range];
+    NSLog(@&quot;%@&quot;, s3);
+
+//5. 通过正则匹配字符串
+// 正则表达式, regular expression
+    // [^字符] 含义是非该字符的字符
+    // [^&lt;] 不是 &lt; 的任意字符
+    // + 放在通配符的后面, 表示多个的意思
+    // [^&lt;]+ 就是任意多个不由&lt;组合而来的字符串
+    NSString *mark = @&quot;&lt;sapn style\&quot;color:red\&quot;&gt;1234567890987654321qazwsxedc&lt;/span&gt;&quot;;
+    NSRange range = [mark rangeOfString:@&quot;&gt;[^&lt;]+&lt;&quot; options:1024];
+    range = NSMakeRange(range.location + 1, range.length - 2);
+    NSString *res = [mark substringWithRange:range];
+    NSLog(@&quot;%@&quot;, res);
+
+ //6. 其他用法
+ //去掉首尾空格
+ NSString *str1 = @&quot;   admin    &quot;;
+    NSLog(@&quot;|%@|&quot;, str1);
+    str1 = [str1 stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSLog(@&quot;|%@|&quot;, str1);
+   //去掉收尾大写 
+    NSString *str2 = @&quot;ABCadminDEF&quot;;
+    NSLog(@&quot;|%@|&quot;, str2);
+    str2 = [str2 stringByTrimmingCharactersInSet:[NSCharacterSet uppercaseLetterCharacterSet]];
+    NSLog(@&quot;|%@|&quot;, str2);
+    去掉首尾小写
+    NSString *str3 = @&quot;abcADMINdefg&quot;;
+    NSLog(@&quot;|%@|&quot;, str3);
+    str3 = [str3 stringByTrimmingCharactersInSet:[NSCharacterSet lowercaseLetterCharacterSet]];
+    NSLog(@&quot;|%@|&quot;, str3);
+    //去掉/
+    NSString *path = @&quot;/Users/apple/Destop/&quot;;
+    path = [path stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@&quot;/&quot;]];
+    NSLog(@&quot;path = %@&quot;, path);
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/08/24/字符串学习总结/" data-id="cjbovtx5m0007m8i30yoi2296" class="article-share-link">Teilen</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/24/NSCharacter​Set使用/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/12/27/hello-world/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/24/iOS开发之VFL布局总结/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/18/iOS开发 const 和 static 关键字的作用/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/16/画图/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/08/数组中取出最大值/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 崇山峻岭<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
