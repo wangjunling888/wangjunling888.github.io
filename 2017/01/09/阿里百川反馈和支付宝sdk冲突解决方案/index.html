@@ -7,17 +7,17 @@
   
   <title>崇山峻岭</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="总结一下从昨天晚上到今天上午踩过的坑, 希望能对大家有所帮助! 很多时候很多大事件貌似和我们没有关系, 但是冥冥中可能某天, 你就会感受到某个事件的影响,  比如阿里巴友盟收购了,  之前还觉得只是一个大公司收购一个小公司, 和自己没有啥关系, 但是慢慢地, 有些问题就开始暴露了,  前段时间,  友盟用户反馈sdk 突然停止服务,  给了一个阿里百川的服务, 让去迁移, 然后作为开发者,  你可">
+  <meta name="description" content="阿里百川反馈和支付宝sdk冲突解决方案总结一下从昨天晚上到今天上午踩过的坑, 希望能对大家有所帮助! 很多时候很多大事件貌似和我们没有关系, 但是冥冥中可能某天, 你就会感受到某个事件的影响,  比如阿里巴友盟收购了,  之前还觉得只是一个大公司收购一个小公司, 和自己没有啥关系, 但是慢慢地, 有些问题就开始暴露了,  前段时间,  友盟用户反馈sdk 突然停止服务,  给了一个阿里百川的服务,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="崇山峻岭">
 <meta property="og:url" content="https://wangjunling888.github.io/2017/01/09/阿里百川反馈和支付宝sdk冲突解决方案/index.html">
 <meta property="og:site_name" content="崇山峻岭">
-<meta property="og:description" content="总结一下从昨天晚上到今天上午踩过的坑, 希望能对大家有所帮助! 很多时候很多大事件貌似和我们没有关系, 但是冥冥中可能某天, 你就会感受到某个事件的影响,  比如阿里巴友盟收购了,  之前还觉得只是一个大公司收购一个小公司, 和自己没有啥关系, 但是慢慢地, 有些问题就开始暴露了,  前段时间,  友盟用户反馈sdk 突然停止服务,  给了一个阿里百川的服务, 让去迁移, 然后作为开发者,  你可">
+<meta property="og:description" content="阿里百川反馈和支付宝sdk冲突解决方案总结一下从昨天晚上到今天上午踩过的坑, 希望能对大家有所帮助! 很多时候很多大事件貌似和我们没有关系, 但是冥冥中可能某天, 你就会感受到某个事件的影响,  比如阿里巴友盟收购了,  之前还觉得只是一个大公司收购一个小公司, 和自己没有啥关系, 但是慢慢地, 有些问题就开始暴露了,  前段时间,  友盟用户反馈sdk 突然停止服务,  给了一个阿里百川的服务,">
 <meta property="og:locale" content="ZH-cn">
-<meta property="og:updated_time" content="2017-01-09T06:26:08.000Z">
+<meta property="og:updated_time" content="2017-12-27T10:44:49.682Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="崇山峻岭">
-<meta name="twitter:description" content="总结一下从昨天晚上到今天上午踩过的坑, 希望能对大家有所帮助! 很多时候很多大事件貌似和我们没有关系, 但是冥冥中可能某天, 你就会感受到某个事件的影响,  比如阿里巴友盟收购了,  之前还觉得只是一个大公司收购一个小公司, 和自己没有啥关系, 但是慢慢地, 有些问题就开始暴露了,  前段时间,  友盟用户反馈sdk 突然停止服务,  给了一个阿里百川的服务, 让去迁移, 然后作为开发者,  你可">
+<meta name="twitter:description" content="阿里百川反馈和支付宝sdk冲突解决方案总结一下从昨天晚上到今天上午踩过的坑, 希望能对大家有所帮助! 很多时候很多大事件貌似和我们没有关系, 但是冥冥中可能某天, 你就会感受到某个事件的影响,  比如阿里巴友盟收购了,  之前还觉得只是一个大公司收购一个小公司, 和自己没有啥关系, 但是慢慢地, 有些问题就开始暴露了,  前段时间,  友盟用户反馈sdk 突然停止服务,  给了一个阿里百川的服务,">
   
     <link rel="alternate" href="/atom.xml" title="崇山峻岭" type="application/atom+xml">
   
@@ -80,7 +80,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>总结一下从昨天晚上到今天上午踩过的坑, 希望能对大家有所帮助!</p>
+        <h1 id="阿里百川反馈和支付宝sdk冲突解决方案"><a href="#阿里百川反馈和支付宝sdk冲突解决方案" class="headerlink" title="阿里百川反馈和支付宝sdk冲突解决方案"></a>阿里百川反馈和支付宝sdk冲突解决方案</h1><p>总结一下从昨天晚上到今天上午踩过的坑, 希望能对大家有所帮助!</p>
 <p>很多时候很多大事件貌似和我们没有关系, 但是冥冥中可能某天, 你就会感受到某个事件的影响,  比如阿里巴友盟收购了,  之前还觉得只是一个大公司收购一个小公司, 和自己没有啥关系, 但是慢慢地, 有些问题就开始暴露了,  前段时间,  友盟用户反馈sdk 突然停止服务,  给了一个阿里百川的服务, 让去迁移, 然后作为开发者,  你可以选择不用这些第三方服务,  但是为了节约开发成本,  又不得不去使用.  无奈只有去迁移.  </p>
 <p>接第三方,  一个看起来类似搬运工的活,  但是有时候也会有很多坑要踩. 下面就说一下我遇到的坑吧!  </p>
 <h3 id="1-cocoapods-导入YWFeedback的坑"><a href="#1-cocoapods-导入YWFeedback的坑" class="headerlink" title="1.  cocoapods 导入YWFeedback的坑"></a>1.  cocoapods 导入YWFeedback的坑</h3><p>​    因为项目中大部分第三方库都是使用cocoapods管理, 那么要接入第三方第一件事情肯定是要看看是否支持cocoapods,  看官方接入文档说可以支持cocoapods,  然后就按照文档写的去接入, 文档如下:</p>
@@ -118,7 +118,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wangjunling888.github.io/2017/01/09/阿里百川反馈和支付宝sdk冲突解决方案/" data-id="cjboxm6o7000935i35nha4jl3" class="article-share-link">Teilen</a>
+      <a data-url="https://wangjunling888.github.io/2017/01/09/阿里百川反馈和支付宝sdk冲突解决方案/" data-id="cjboxu8a5000956i3c2bch47s" class="article-share-link">Teilen</a>
       
       
     </footer>

@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="崇山峻岭">
 <meta property="og:description" content="JPush的坑​    搞了一下午, 没有高出来, 最终在一个同事的提醒下终于弄好了, 废话不多说直接上代码 123456789101112131415161718192021222324252627282930313233/** 初始化极光推送 */- (void)setJPush:(NSDictionary *)launchOptions &amp;#123;            //初始化APNs">
 <meta property="og:locale" content="ZH-cn">
-<meta property="og:updated_time" content="2017-03-14T15:51:04.000Z">
+<meta property="og:updated_time" content="2017-12-27T10:47:08.637Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="崇山峻岭">
 <meta name="twitter:description" content="JPush的坑​    搞了一下午, 没有高出来, 最终在一个同事的提醒下终于弄好了, 废话不多说直接上代码 123456789101112131415161718192021222324252627282930313233/** 初始化极光推送 */- (void)setJPush:(NSDictionary *)launchOptions &amp;#123;            //初始化APNs">
@@ -80,7 +80,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="JPush的坑"><a href="#JPush的坑" class="headerlink" title="JPush的坑"></a>JPush的坑</h3><p>​    搞了一下午, 没有高出来, 最终在一个同事的提醒下终于弄好了, 废话不多说直接上代码</p>
+        <h1 id="JPush的坑"><a href="#JPush的坑" class="headerlink" title="JPush的坑"></a>JPush的坑</h1><p>​    搞了一下午, 没有高出来, 最终在一个同事的提醒下终于弄好了, 废话不多说直接上代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> 初始化极光推送</span><br><span class="line"> */</span><br><span class="line">- (void)setJPush:(NSDictionary *)launchOptions &#123;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    //初始化APNs</span><br><span class="line">    JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];</span><br><span class="line">    entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound;</span><br><span class="line">    if ([[UIDevice currentDevice].systemVersion floatValue] &gt;= 8.0) &#123;</span><br><span class="line">        // 可以添加自定义categories</span><br><span class="line">        // NSSet&lt;UNNotificationCategory *&gt; *categories for iOS10 or later</span><br><span class="line">        // NSSet&lt;UIUserNotificationCategory *&gt; *categories for iOS8 and iOS9</span><br><span class="line">    &#125;</span><br><span class="line">    [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];</span><br><span class="line">   </span><br><span class="line">    </span><br><span class="line">    //初始换JPush</span><br><span class="line">    [JPUSHService setupWithOption:launchOptions appKey:JPushAppKey channel:nil apsForProduction:NO];</span><br><span class="line">    </span><br><span class="line">    //设置别名</span><br><span class="line">    [JPUSHService setTags:nil alias:@&quot;abc&quot; fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) &#123;</span><br><span class="line">        NSLog(@&quot;%@&quot;, iAlias);</span><br><span class="line">    &#125;];</span><br><span class="line">    </span><br><span class="line">//    [[NSNotificationCenter defaultCenter] addObserver:self</span><br><span class="line">//                                             selector:@selector(networkDidLogin:)</span><br><span class="line">//                                                 name:kJPFNetworkDidLoginNotification</span><br><span class="line">//                                               object:nil];</span><br><span class="line">//    关掉无法无天的log, 需要时再开启</span><br><span class="line">    [JPUSHService setLogOFF];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>上面就是我的代码,  完全按照极光官方文档集成, 但是就是绑定不了别名。</p>
 <p>下面我来说一下原因,   在JPush刚刚初始化后面直接调用设置标签很有可能极光那边还没有登录完成, 因为都是异步网络请求, 所以此时去绑定标签或者别名肯定是不行的, 解决方案就是 在初始化的地方设置登录极光成功的通知, 极光sdk中有一下几个通知, 并且还给了中文注释, 不愧为中国人写的哈, </p>
@@ -92,7 +92,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wangjunling888.github.io/2017/03/14/JPush的坑/" data-id="cjboxm6nv000035i3v3v8lgn7" class="article-share-link">Teilen</a>
+      <a data-url="https://wangjunling888.github.io/2017/03/14/JPush的坑/" data-id="cjboxu89t000056i3mo7gv9ay" class="article-share-link">Teilen</a>
       
       
     </footer>

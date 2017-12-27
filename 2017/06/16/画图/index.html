@@ -7,17 +7,17 @@
   
   <title>崇山峻岭</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 画线123456789- (void)test1 &amp;#123;//画一根线    //1, 获取上下文    CGContextRef contextRef = UIGraphicsGetCurrentContext();    //2. 起点和终点    CGContextMoveToPoint(contextRef, 0, 0);    CGContextAddLineToPoint(c">
+  <meta name="description" content="iOS开发简单的绘图1. 画线123456789- (void)test1 &amp;#123;//画一根线    //1, 获取上下文    CGContextRef contextRef = UIGraphicsGetCurrentContext();    //2. 起点和终点    CGContextMoveToPoint(contextRef, 0, 0);    CGContextAddLin">
 <meta property="og:type" content="article">
 <meta property="og:title" content="崇山峻岭">
 <meta property="og:url" content="https://wangjunling888.github.io/2017/06/16/画图/index.html">
 <meta property="og:site_name" content="崇山峻岭">
-<meta property="og:description" content="1. 画线123456789- (void)test1 &amp;#123;//画一根线    //1, 获取上下文    CGContextRef contextRef = UIGraphicsGetCurrentContext();    //2. 起点和终点    CGContextMoveToPoint(contextRef, 0, 0);    CGContextAddLineToPoint(c">
+<meta property="og:description" content="iOS开发简单的绘图1. 画线123456789- (void)test1 &amp;#123;//画一根线    //1, 获取上下文    CGContextRef contextRef = UIGraphicsGetCurrentContext();    //2. 起点和终点    CGContextMoveToPoint(contextRef, 0, 0);    CGContextAddLin">
 <meta property="og:locale" content="ZH-cn">
-<meta property="og:updated_time" content="2017-06-16T09:12:55.000Z">
+<meta property="og:updated_time" content="2017-12-27T10:45:41.601Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="崇山峻岭">
-<meta name="twitter:description" content="1. 画线123456789- (void)test1 &amp;#123;//画一根线    //1, 获取上下文    CGContextRef contextRef = UIGraphicsGetCurrentContext();    //2. 起点和终点    CGContextMoveToPoint(contextRef, 0, 0);    CGContextAddLineToPoint(c">
+<meta name="twitter:description" content="iOS开发简单的绘图1. 画线123456789- (void)test1 &amp;#123;//画一根线    //1, 获取上下文    CGContextRef contextRef = UIGraphicsGetCurrentContext();    //2. 起点和终点    CGContextMoveToPoint(contextRef, 0, 0);    CGContextAddLin">
   
     <link rel="alternate" href="/atom.xml" title="崇山峻岭" type="application/atom+xml">
   
@@ -80,7 +80,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-画线"><a href="#1-画线" class="headerlink" title="1. 画线"></a>1. 画线</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (void)test1 &#123;//画一根线</span><br><span class="line">    //1, 获取上下文</span><br><span class="line">    CGContextRef contextRef = UIGraphicsGetCurrentContext();</span><br><span class="line">    //2. 起点和终点</span><br><span class="line">    CGContextMoveToPoint(contextRef, 0, 0);</span><br><span class="line">    CGContextAddLineToPoint(contextRef, 100, 100);</span><br><span class="line">    //3. 绘制</span><br><span class="line">    CGContextStrokePath(contextRef);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="iOS开发简单的绘图"><a href="#iOS开发简单的绘图" class="headerlink" title="iOS开发简单的绘图"></a>iOS开发简单的绘图</h1><h3 id="1-画线"><a href="#1-画线" class="headerlink" title="1. 画线"></a>1. 画线</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (void)test1 &#123;//画一根线</span><br><span class="line">    //1, 获取上下文</span><br><span class="line">    CGContextRef contextRef = UIGraphicsGetCurrentContext();</span><br><span class="line">    //2. 起点和终点</span><br><span class="line">    CGContextMoveToPoint(contextRef, 0, 0);</span><br><span class="line">    CGContextAddLineToPoint(contextRef, 100, 100);</span><br><span class="line">    //3. 绘制</span><br><span class="line">    CGContextStrokePath(contextRef);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>效果如下图:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">- (void)test2 &#123;//画多个线</span><br><span class="line">    //获取上下文</span><br><span class="line">    CGContextRef contextRef = UIGraphicsGetCurrentContext();</span><br><span class="line">    //设置线的路径,  c语言数组</span><br><span class="line">    CGPoint points[] = &#123;</span><br><span class="line">        CGPointMake(0, 0),</span><br><span class="line">        CGPointMake(50, 50),</span><br><span class="line">        CGPointMake(0, 50),</span><br><span class="line">        CGPointMake(50, 100),</span><br><span class="line">        CGPointMake(0, 0)</span><br><span class="line">    &#125;;</span><br><span class="line">    CGContextAddLines(contextRef, points, 5);</span><br><span class="line">    //绘制</span><br><span class="line">    CGContextStrokePath(contextRef);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>效果如下图:</p>
@@ -100,7 +100,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wangjunling888.github.io/2017/06/16/画图/" data-id="cjboxm6o7000835i3boho5wbo" class="article-share-link">Teilen</a>
+      <a data-url="https://wangjunling888.github.io/2017/06/16/画图/" data-id="cjboxu8a4000856i3bglfik8x" class="article-share-link">Teilen</a>
       
       
     </footer>

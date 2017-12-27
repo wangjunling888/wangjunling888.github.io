@@ -111,7 +111,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wangjunling888.github.io/2017/08/24/iOS开发之VFL布局总结/" data-id="cjboxm6o2000335i3exkeywej" class="article-share-link">Teilen</a>
+      <a data-url="https://wangjunling888.github.io/2017/08/24/iOS开发之VFL布局总结/" data-id="cjboxu8a0000356i3ro6mlkxn" class="article-share-link">Teilen</a>
       
       
     </footer>
@@ -133,7 +133,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="iOS开发-const-和-static-关键字的作用"><a href="#iOS开发-const-和-static-关键字的作用" class="headerlink" title="iOS开发 const 和 static 关键字的作用"></a>iOS开发 const 和 static 关键字的作用</h3><h4 id="1-static"><a href="#1-static" class="headerlink" title="1. static"></a>1. static</h4><p>1)在函数体内，一个被声明为静态的变量在这一函数被调用过程中维持其值不变（该变量存放在静态变量区）。</p>
+        <h1 id="iOS开发-const-和-static-关键字的作用"><a href="#iOS开发-const-和-static-关键字的作用" class="headerlink" title="iOS开发 const 和 static 关键字的作用"></a>iOS开发 const 和 static 关键字的作用</h1><h4 id="1-static"><a href="#1-static" class="headerlink" title="1. static"></a>1. static</h4><p>1)在函数体内，一个被声明为静态的变量在这一函数被调用过程中维持其值不变（该变量存放在静态变量区）。</p>
 <p>2) 在模块内（但在函数体外），一个被声明为静态的变量可以被模块内所用函数访问，但不能被模块外其它函数访问。它是一个本地的全局变量。</p>
 <p>3) 在模块内，一个被声明为静态的函数只可被这一模块内的其它函数调用。那就是，这个函数被限制在声明它的模块的本地范围内使用。</p>
 <p>　</p>
@@ -148,7 +148,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wangjunling888.github.io/2017/08/18/iOS开发 const 和 static 关键字的作用/" data-id="cjboxm6o1000235i3frdd5ujr" class="article-share-link">Teilen</a>
+      <a data-url="https://wangjunling888.github.io/2017/08/18/iOS开发 const 和 static 关键字的作用/" data-id="cjboxu89z000256i3k0ybt3ba" class="article-share-link">Teilen</a>
       
       
     </footer>
@@ -170,7 +170,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-画线"><a href="#1-画线" class="headerlink" title="1. 画线"></a>1. 画线</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (void)test1 &#123;//画一根线</span><br><span class="line">    //1, 获取上下文</span><br><span class="line">    CGContextRef contextRef = UIGraphicsGetCurrentContext();</span><br><span class="line">    //2. 起点和终点</span><br><span class="line">    CGContextMoveToPoint(contextRef, 0, 0);</span><br><span class="line">    CGContextAddLineToPoint(contextRef, 100, 100);</span><br><span class="line">    //3. 绘制</span><br><span class="line">    CGContextStrokePath(contextRef);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="iOS开发简单的绘图"><a href="#iOS开发简单的绘图" class="headerlink" title="iOS开发简单的绘图"></a>iOS开发简单的绘图</h1><h3 id="1-画线"><a href="#1-画线" class="headerlink" title="1. 画线"></a>1. 画线</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (void)test1 &#123;//画一根线</span><br><span class="line">    //1, 获取上下文</span><br><span class="line">    CGContextRef contextRef = UIGraphicsGetCurrentContext();</span><br><span class="line">    //2. 起点和终点</span><br><span class="line">    CGContextMoveToPoint(contextRef, 0, 0);</span><br><span class="line">    CGContextAddLineToPoint(contextRef, 100, 100);</span><br><span class="line">    //3. 绘制</span><br><span class="line">    CGContextStrokePath(contextRef);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>效果如下图:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">- (void)test2 &#123;//画多个线</span><br><span class="line">    //获取上下文</span><br><span class="line">    CGContextRef contextRef = UIGraphicsGetCurrentContext();</span><br><span class="line">    //设置线的路径,  c语言数组</span><br><span class="line">    CGPoint points[] = &#123;</span><br><span class="line">        CGPointMake(0, 0),</span><br><span class="line">        CGPointMake(50, 50),</span><br><span class="line">        CGPointMake(0, 50),</span><br><span class="line">        CGPointMake(50, 100),</span><br><span class="line">        CGPointMake(0, 0)</span><br><span class="line">    &#125;;</span><br><span class="line">    CGContextAddLines(contextRef, points, 5);</span><br><span class="line">    //绘制</span><br><span class="line">    CGContextStrokePath(contextRef);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>效果如下图:</p>
@@ -190,7 +190,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wangjunling888.github.io/2017/06/16/画图/" data-id="cjboxm6o7000835i3boho5wbo" class="article-share-link">Teilen</a>
+      <a data-url="https://wangjunling888.github.io/2017/06/16/画图/" data-id="cjboxu8a4000856i3bglfik8x" class="article-share-link">Teilen</a>
       
       
     </footer>
@@ -212,7 +212,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-项目需求"><a href="#1-项目需求" class="headerlink" title="1. 项目需求"></a>1. 项目需求</h3><p>​    有一个模型数组arr, 其中模型model中有个字段num, 我需要找出所有模型中最大的一个</p>
+        <h1 id="数组中取出最大值"><a href="#数组中取出最大值" class="headerlink" title="数组中取出最大值"></a>数组中取出最大值</h1><h3 id="1-项目需求"><a href="#1-项目需求" class="headerlink" title="1. 项目需求"></a>1. 项目需求</h3><p>​    有一个模型数组arr, 其中模型model中有个字段num, 我需要找出所有模型中最大的一个</p>
 <h3 id="2-解决方案分析"><a href="#2-解决方案分析" class="headerlink" title="2. 解决方案分析"></a>2. 解决方案分析</h3><p>​    我们第一印象肯定是遍历数组, 取出模型, 然后在取出num字段, 然后进行比较, 取出最大值. 但是本文, 就要另辟蹊径, 用一个更优雅的方法两行代买搞定</p>
 <h3 id="3-代码"><a href="#3-代码" class="headerlink" title="3. 代码"></a>3. 代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 通过kvc方式取出num</span><br><span class="line">NSArray *temArr = [arr valueForKeyPath:@&quot;num&quot;];</span><br><span class="line">// 这步是重点,直接取出最大值</span><br><span class="line">CGFloat maxNum = [[temArr valueForKeyPath:@&quot;@max.integerValue&quot;] integerValue];</span><br></pre></td></tr></table></figure>
 <h3 id="4-注意事项"><a href="#4-注意事项" class="headerlink" title="4. 注意事项"></a>4. 注意事项</h3><p>​    如果你的模型中的num不是对象, 那么第一行代码就会直接崩掉, 因为基础类型的数是不能放到oc数组中的 , 所以, 建立模型的时候一定要用NSNmuber类型的num字段, 这样才能放入temArr数组, 当然如果你直接拥有一个装有NSNmuber类型的数组, 直接执行第二步, 就可以获得组大值.</p>
@@ -223,7 +223,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wangjunling888.github.io/2017/06/08/数组中取出最大值/" data-id="cjboxm6o6000735i3p8ooe5hv" class="article-share-link">Teilen</a>
+      <a data-url="https://wangjunling888.github.io/2017/06/08/数组中取出最大值/" data-id="cjboxu8a3000756i301hq463v" class="article-share-link">Teilen</a>
       
       
     </footer>
@@ -245,7 +245,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="JPush的坑"><a href="#JPush的坑" class="headerlink" title="JPush的坑"></a>JPush的坑</h3><p>​    搞了一下午, 没有高出来, 最终在一个同事的提醒下终于弄好了, 废话不多说直接上代码</p>
+        <h1 id="JPush的坑"><a href="#JPush的坑" class="headerlink" title="JPush的坑"></a>JPush的坑</h1><p>​    搞了一下午, 没有高出来, 最终在一个同事的提醒下终于弄好了, 废话不多说直接上代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> 初始化极光推送</span><br><span class="line"> */</span><br><span class="line">- (void)setJPush:(NSDictionary *)launchOptions &#123;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    //初始化APNs</span><br><span class="line">    JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];</span><br><span class="line">    entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound;</span><br><span class="line">    if ([[UIDevice currentDevice].systemVersion floatValue] &gt;= 8.0) &#123;</span><br><span class="line">        // 可以添加自定义categories</span><br><span class="line">        // NSSet&lt;UNNotificationCategory *&gt; *categories for iOS10 or later</span><br><span class="line">        // NSSet&lt;UIUserNotificationCategory *&gt; *categories for iOS8 and iOS9</span><br><span class="line">    &#125;</span><br><span class="line">    [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];</span><br><span class="line">   </span><br><span class="line">    </span><br><span class="line">    //初始换JPush</span><br><span class="line">    [JPUSHService setupWithOption:launchOptions appKey:JPushAppKey channel:nil apsForProduction:NO];</span><br><span class="line">    </span><br><span class="line">    //设置别名</span><br><span class="line">    [JPUSHService setTags:nil alias:@&quot;abc&quot; fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) &#123;</span><br><span class="line">        NSLog(@&quot;%@&quot;, iAlias);</span><br><span class="line">    &#125;];</span><br><span class="line">    </span><br><span class="line">//    [[NSNotificationCenter defaultCenter] addObserver:self</span><br><span class="line">//                                             selector:@selector(networkDidLogin:)</span><br><span class="line">//                                                 name:kJPFNetworkDidLoginNotification</span><br><span class="line">//                                               object:nil];</span><br><span class="line">//    关掉无法无天的log, 需要时再开启</span><br><span class="line">    [JPUSHService setLogOFF];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>上面就是我的代码,  完全按照极光官方文档集成, 但是就是绑定不了别名。</p>
 <p>下面我来说一下原因,   在JPush刚刚初始化后面直接调用设置标签很有可能极光那边还没有登录完成, 因为都是异步网络请求, 所以此时去绑定标签或者别名肯定是不行的, 解决方案就是 在初始化的地方设置登录极光成功的通知, 极光sdk中有一下几个通知, 并且还给了中文注释, 不愧为中国人写的哈, </p>
@@ -257,7 +257,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wangjunling888.github.io/2017/03/14/JPush的坑/" data-id="cjboxm6nv000035i3v3v8lgn7" class="article-share-link">Teilen</a>
+      <a data-url="https://wangjunling888.github.io/2017/03/14/JPush的坑/" data-id="cjboxu89t000056i3mo7gv9ay" class="article-share-link">Teilen</a>
       
       
     </footer>
@@ -279,7 +279,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>总结一下从昨天晚上到今天上午踩过的坑, 希望能对大家有所帮助!</p>
+        <h1 id="阿里百川反馈和支付宝sdk冲突解决方案"><a href="#阿里百川反馈和支付宝sdk冲突解决方案" class="headerlink" title="阿里百川反馈和支付宝sdk冲突解决方案"></a>阿里百川反馈和支付宝sdk冲突解决方案</h1><p>总结一下从昨天晚上到今天上午踩过的坑, 希望能对大家有所帮助!</p>
 <p>很多时候很多大事件貌似和我们没有关系, 但是冥冥中可能某天, 你就会感受到某个事件的影响,  比如阿里巴友盟收购了,  之前还觉得只是一个大公司收购一个小公司, 和自己没有啥关系, 但是慢慢地, 有些问题就开始暴露了,  前段时间,  友盟用户反馈sdk 突然停止服务,  给了一个阿里百川的服务, 让去迁移, 然后作为开发者,  你可以选择不用这些第三方服务,  但是为了节约开发成本,  又不得不去使用.  无奈只有去迁移.  </p>
 <p>接第三方,  一个看起来类似搬运工的活,  但是有时候也会有很多坑要踩. 下面就说一下我遇到的坑吧!  </p>
 <h3 id="1-cocoapods-导入YWFeedback的坑"><a href="#1-cocoapods-导入YWFeedback的坑" class="headerlink" title="1.  cocoapods 导入YWFeedback的坑"></a>1.  cocoapods 导入YWFeedback的坑</h3><p>​    因为项目中大部分第三方库都是使用cocoapods管理, 那么要接入第三方第一件事情肯定是要看看是否支持cocoapods,  看官方接入文档说可以支持cocoapods,  然后就按照文档写的去接入, 文档如下:</p>
@@ -317,7 +317,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wangjunling888.github.io/2017/01/09/阿里百川反馈和支付宝sdk冲突解决方案/" data-id="cjboxm6o7000935i35nha4jl3" class="article-share-link">Teilen</a>
+      <a data-url="https://wangjunling888.github.io/2017/01/09/阿里百川反馈和支付宝sdk冲突解决方案/" data-id="cjboxu8a5000956i3c2bch47s" class="article-share-link">Teilen</a>
       
       
     </footer>
@@ -339,21 +339,32 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近公司项目中需要字符串修剪, 而且项目中每个地方的需求还不太一样, 所以写了下面的一个分类,  感觉挺好用分享出来给大家, 希望遇到同样问题的同志少花时间, 注释比较清晰, 我就废话不多说了,  看代码  </p>
+        <h1 id="字符串修剪"><a href="#字符串修剪" class="headerlink" title="字符串修剪"></a>字符串修剪</h1><p>最近公司项目中需要字符串修剪, 而且项目中每个地方的需求还不太一样, 所以写了下面的一个分类,  感觉挺好用分享出来给大家, 希望遇到同样问题的同志少花时间, 注释比较清晰, 我就废话不多说了,  看代码  </p>
 <ol>
 <li><p>头文件</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  NSString+JLTrim.h</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  Created by 王俊岭 on 16/8/17.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">NSString</span> (<span class="title">JLTrim</span>)</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  修剪字符串</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  @param val          要修改的字符串</span></span><br><span class="line"><span class="comment"> *  @param characterSet 要去除的类型</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  @return 修剪后的字符串</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">+ (<span class="built_in">NSString</span> *)trim:(<span class="built_in">NSString</span> *)val trimCharacterSet:(<span class="built_in">NSCharacterSet</span> *)characterSet;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  删除字符串前后空格</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  @param val 原始字符串</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  @return 修剪后字符串</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">+ (<span class="built_in">NSString</span> *)trimWhitespace:(<span class="built_in">NSString</span> *)val;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  删除字符串前后空行</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  @param val 原始字符串</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  @return 修改后字符串</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">+ (<span class="built_in">NSString</span> *)trimNewline:(<span class="built_in">NSString</span> *)val;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  删除字符串前后空行和空格</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  @param val 原始字符串</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  @return 修改后字符串</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">+ (<span class="built_in">NSString</span> *)trimWhitespaceAndNewline:(<span class="built_in">NSString</span> *)val;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 删除字符串中所有空格</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param val 原始字符串</span></span><br><span class="line"><span class="comment"> @return 修改后的字符串</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">+ (<span class="built_in">NSString</span> *)trimAllWhitespace:(<span class="built_in">NSString</span> *)val;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 删除字符创中所有回车</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param val 原始字符串</span></span><br><span class="line"><span class="comment"> @return 修改后字符串</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">+ (<span class="built_in">NSString</span> *)trimAllNewLine:(<span class="built_in">NSString</span> *)val;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>实现文件</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  NSString+JLTrim.m</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  Created by 王俊岭 on 16/8/17.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">"NSString+JLTrim.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">NSString</span> (<span class="title">JLTrim</span>)</span></span><br><span class="line">+ (<span class="built_in">NSString</span> *)trim:(<span class="built_in">NSString</span> *)val trimCharacterSet:(<span class="built_in">NSCharacterSet</span> *)characterSet &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *returnVal = <span class="string">@""</span>;</span><br><span class="line">    <span class="keyword">if</span> (val) &#123;</span><br><span class="line">       returnVal = [val stringByTrimmingCharactersInSet:characterSet];</span><br><span class="line">            &#125;</span><br><span class="line">    <span class="keyword">return</span> returnVal;</span><br><span class="line">    &#125;</span><br><span class="line">+ (<span class="built_in">NSString</span> *)trimWhitespace:(<span class="built_in">NSString</span> *)val &#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="keyword">self</span> trim:val trimCharacterSet:[<span class="built_in">NSCharacterSet</span> whitespaceCharacterSet]]; <span class="comment">//去掉前后空格</span></span><br><span class="line">&#125;</span><br><span class="line">+ (<span class="built_in">NSString</span> *)trimNewline:(<span class="built_in">NSString</span> *)val &#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="keyword">self</span> trim:val trimCharacterSet:[<span class="built_in">NSCharacterSet</span> newlineCharacterSet]]; <span class="comment">//去掉前后回车符</span></span><br><span class="line">&#125;</span><br><span class="line">+ (<span class="built_in">NSString</span> *)trimWhitespaceAndNewline:(<span class="built_in">NSString</span> *)val &#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="keyword">self</span> trim:val trimCharacterSet:[<span class="built_in">NSCharacterSet</span> whitespaceAndNewlineCharacterSet]]; <span class="comment">//去掉前后空格和回车符</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">+ (<span class="built_in">NSString</span> *)trimAllWhitespace:(<span class="built_in">NSString</span> *)val &#123;</span><br><span class="line">    <span class="built_in">NSMutableString</span> *mutStr = [<span class="built_in">NSMutableString</span> stringWithString:val];</span><br><span class="line">    <span class="built_in">NSRange</span> range = &#123;<span class="number">0</span>,val.length&#125;;</span><br><span class="line">    [mutStr replaceOccurrencesOfString:<span class="string">@" "</span> withString:<span class="string">@""</span> options:<span class="built_in">NSLiteralSearch</span> range:range];</span><br><span class="line">    <span class="keyword">return</span> mutStr.copy;</span><br><span class="line">&#125;</span><br><span class="line">+ (<span class="built_in">NSString</span> *)trimAllNewLine:(<span class="built_in">NSString</span> *)val &#123;</span><br><span class="line">    <span class="built_in">NSMutableString</span> *mutStr = [<span class="built_in">NSMutableString</span> stringWithString:val];</span><br><span class="line">    <span class="built_in">NSRange</span> range = &#123;<span class="number">0</span>,val.length&#125;;</span><br><span class="line">    [mutStr replaceOccurrencesOfString:<span class="string">@"\n"</span> withString:<span class="string">@""</span> options:<span class="built_in">NSLiteralSearch</span> range:range];</span><br><span class="line">    <span class="keyword">return</span> mutStr.copy;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>stringByTrimmingCharactersInSet 这个方法只能删除字符串两端的字符, 不能对字符串中间的字符进行操作, 所以想删除字符串中间的字符就需要字符串替换的方法replaceOccurrencesOfString </p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  NSString+JLTrim.h</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  Created by 王俊岭 on 16/8/17.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">NSString</span> (<span class="title">JLTrim</span>)</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  修剪字符串</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  @param val          要修改的字符串</span></span><br><span class="line"><span class="comment"> *  @param characterSet 要去除的类型</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  @return 修剪后的字符串</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">+ (<span class="built_in">NSString</span> *)trim:(<span class="built_in">NSString</span> *)val trimCharacterSet:(<span class="built_in">NSCharacterSet</span> *)characterSet;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  删除字符串前后空格</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  @param val 原始字符串</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  @return 修剪后字符串</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">+ (<span class="built_in">NSString</span> *)trimWhitespace:(<span class="built_in">NSString</span> *)val;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  删除字符串前后空行</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  @param val 原始字符串</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  @return 修改后字符串</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">+ (<span class="built_in">NSString</span> *)trimNewline:(<span class="built_in">NSString</span> *)val;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  删除字符串前后空行和空格</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  @param val 原始字符串</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  @return 修改后字符串</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">+ (<span class="built_in">NSString</span> *)trimWhitespaceAndNewline:(<span class="built_in">NSString</span> *)val;</span><br></pre></td></tr></table></figure>
+<p>/**<br> 删除字符串中所有空格</p>
+<p> @param val 原始字符串<br> @return 修改后的字符串<br> */</p>
+<ul>
+<li>(NSString <em>)trimAllWhitespace:(NSString </em>)val;</li>
+</ul>
 </li>
 </ol>
+<p>   /**<br>    删除字符创中所有回车</p>
+<pre><code>@param val 原始字符串
+@return 修改后字符串
+*/
+</code></pre><ul>
+<li><p>(NSString <em>)trimAllNewLine:(NSString </em>)val;<br>   @end</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. 实现文件</span><br><span class="line"></span><br><span class="line">   ```objc</span><br><span class="line">   //</span><br><span class="line">   //  NSString+JLTrim.m</span><br><span class="line">   //</span><br><span class="line">   //  Created by 王俊岭 on 16/8/17.</span><br><span class="line">   //</span><br><span class="line"></span><br><span class="line">   #import &quot;NSString+JLTrim.h&quot;</span><br><span class="line"></span><br><span class="line">   @implementation NSString (JLTrim)</span><br><span class="line">   + (NSString *)trim:(NSString *)val trimCharacterSet:(NSCharacterSet *)characterSet &#123;</span><br><span class="line">       NSString *returnVal = @&quot;&quot;;</span><br><span class="line">       if (val) &#123;</span><br><span class="line">          returnVal = [val stringByTrimmingCharactersInSet:characterSet];</span><br><span class="line">               &#125;</span><br><span class="line">       return returnVal;</span><br><span class="line">       &#125;</span><br><span class="line">   + (NSString *)trimWhitespace:(NSString *)val &#123;</span><br><span class="line">       return [self trim:val trimCharacterSet:[NSCharacterSet whitespaceCharacterSet]]; //去掉前后空格</span><br><span class="line">   &#125;</span><br><span class="line">   + (NSString *)trimNewline:(NSString *)val &#123;</span><br><span class="line">       return [self trim:val trimCharacterSet:[NSCharacterSet newlineCharacterSet]]; //去掉前后回车符</span><br><span class="line">   &#125;</span><br><span class="line">   + (NSString *)trimWhitespaceAndNewline:(NSString *)val &#123;</span><br><span class="line">       return [self trim:val trimCharacterSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]; //去掉前后空格和回车符</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   + (NSString *)trimAllWhitespace:(NSString *)val &#123;</span><br><span class="line">       NSMutableString *mutStr = [NSMutableString stringWithString:val];</span><br><span class="line">       NSRange range = &#123;0,val.length&#125;;</span><br><span class="line">       [mutStr replaceOccurrencesOfString:@&quot; &quot; withString:@&quot;&quot; options:NSLiteralSearch range:range];</span><br><span class="line">       return mutStr.copy;</span><br><span class="line">   &#125;</span><br><span class="line">   + (NSString *)trimAllNewLine:(NSString *)val &#123;</span><br><span class="line">       NSMutableString *mutStr = [NSMutableString stringWithString:val];</span><br><span class="line">       NSRange range = &#123;0,val.length&#125;;</span><br><span class="line">       [mutStr replaceOccurrencesOfString:@&quot;\n&quot; withString:@&quot;&quot; options:NSLiteralSearch range:range];</span><br><span class="line">       return mutStr.copy;</span><br><span class="line">   &#125;</span><br><span class="line">   @end</span><br></pre></td></tr></table></figure>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>stringByTrimmingCharactersInSet 这个方法只能删除字符串两端的字符, 不能对字符串中间的字符进行操作, 所以想删除字符串中间的字符就需要字符串替换的方法replaceOccurrencesOfString </p>
+</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wangjunling888.github.io/2017/01/06/字符串修剪/" data-id="cjboxm6o4000535i3i4o4ayjz" class="article-share-link">Teilen</a>
+      <a data-url="https://wangjunling888.github.io/2017/01/06/字符串修剪/" data-id="cjboxu8a2000556i390fy3ftu" class="article-share-link">Teilen</a>
       
       
     </footer>
@@ -375,7 +386,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>​    所有的办法都是在没有办法的情况下才能找到,  之前一直用的 Paragon NTFS, 当然虽然是程序员有两种方式, 一种就是支持自己的事业,用收费的, 另一种就是发挥自己的特长, 去破解.  无奈承担不起Paragon NTFS每个版本更新都要重新购买的费用, 如果一次购买终身有效19.9刀结果面前可以接受.  但是破解版的终归不是最终的解决方案, 系统升级或软件升级之后就会一堆头疼的事, 最主要的是Paragon NTFS这个软件稳定性不是很好, 尤其是大批量大文件拷贝时, 有时候会在拷贝中途报错, 这是让人不能忍受的,  说这么多废话, 那么有没有一种更好的办法解决呢,  有, 当然有, 哈哈, 接下来就是重点: 挖掘mac系统的潜力.</p>
+        <h1 id="mac支持NTFS"><a href="#mac支持NTFS" class="headerlink" title="mac支持NTFS"></a>mac支持NTFS</h1><p>​    所有的办法都是在没有办法的情况下才能找到,  之前一直用的 Paragon NTFS, 当然虽然是程序员有两种方式, 一种就是支持自己的事业,用收费的, 另一种就是发挥自己的特长, 去破解.  无奈承担不起Paragon NTFS每个版本更新都要重新购买的费用, 如果一次购买终身有效19.9刀结果面前可以接受.  但是破解版的终归不是最终的解决方案, 系统升级或软件升级之后就会一堆头疼的事, 最主要的是Paragon NTFS这个软件稳定性不是很好, 尤其是大批量大文件拷贝时, 有时候会在拷贝中途报错, 这是让人不能忍受的,  说这么多废话, 那么有没有一种更好的办法解决呢,  有, 当然有, 哈哈, 接下来就是重点: 挖掘mac系统的潜力.</p>
 <p>​    首先, 插上NTFS格式的硬盘, 打开终端(为了照顾非程序员, 解释一下什么是终端, 就是mac系统下类似Windows中的cmd命令窗口的一个东西, 在mac的launchpad中的搜索框中直接搜索”终端”即可找到). 输入一下命令:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">diskutil list</span><br></pre></td></tr></table></figure>
 <p>​    按回车键会得到如下图所示,  找到你的磁盘名称,  我的叫 HD-E1 ,  上面的命令目的就是查看磁盘卷标名称;执行以下命令:</p>
@@ -390,7 +401,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wangjunling888.github.io/2016/12/28/mac支持NTFS/" data-id="cjboxm6o3000435i3er9snrj8" class="article-share-link">Teilen</a>
+      <a data-url="https://wangjunling888.github.io/2016/12/28/mac支持NTFS/" data-id="cjboxu8a1000456i3cg8d1146" class="article-share-link">Teilen</a>
       
       
     </footer>
@@ -412,24 +423,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>NSCharacter​Set使用<br>=</p>
+        <h1 id="NSCharacterSet使用"><a href="#NSCharacterSet使用" class="headerlink" title="NSCharacterSet使用"></a>NSCharacterSet使用</h1><p>=</p>
 <p>NSCharacterSet ，以及它的可变版本NSMutableCharacterSet，用面向对象的方式来表示一组Unicode字符。它经常与NSString及NSScanner组合起来使用，在不同的字符上做过滤、删除或者分割操作。为了给你提供这些字符是哪些字符的直观印象，请看看NSCharacterSet 提供的类方法：</p>
 <ul>
 <li>alphanumericCharacterSet                 //</li>
 <li>capitalizedLetterCharacterSet</li>
-<li>controlCharacterSet                     //控制符</li>
-<li>decimalDigitCharacterSet                //小数</li>
-<li>decomposableCharacterSet                //可分解</li>
-<li>illegalCharacterSet                    //非法字符</li>
-<li>letterCharacterSet                    //文字</li>
-<li>lowercaseLetterCharacterSet            //小写字母</li>
-<li>newlineCharacterSet                     //回车</li>
+<li>controlCharacterSet                 //控制符</li>
+<li>decimalDigitCharacterSet        //小数</li>
+<li>decomposableCharacterSet    //可分解</li>
+<li>illegalCharacterSet    //非法字符</li>
+<li>letterCharacterSet//文字</li>
+<li>lowercaseLetterCharacterSet//小写字母</li>
+<li>newlineCharacterSet     //回车</li>
 <li>nonBaseCharacterSet</li>
-<li>punctuationCharacterSet                //标点</li>
+<li>punctuationCharacterSet            //标点</li>
 <li>symbolCharacterSet</li>
-<li>uppercaseLetterCharacterSet             //大写字符</li>
-<li>whitespaceAndNewlineCharacterSet        //回车和空格</li>
-<li>whitespaceCharacterSet                //空格</li>
+<li>uppercaseLetterCharacterSet </li>
+<li>whitespaceAndNewlineCharacterSet//回车和空格</li>
+<li>whitespaceCharacterSet    //空格</li>
 </ul>
 <p>与它的名字所表述的相反，NSCharacterSet 跟 NSSet 一点关系都没有。<br>虽然底层实现不太一样，但是 NSCharacterSet 在概念上跟 NSIndexSet 还有点相似的。NSIndexSet，之前提到过，表示一个有序的不重复的无符号整数的集合。Unicode字符跟无符号整数类似，大致对应一些拼写表示。所以，一个 NSCharacterSet +lowercaseCharacterSet 字符集与一个包含97到122范围的 NSIndexSet 是等价的。<br>现在我们对理解 NSCharacterSet 的基本概念已经有了少许自信，让我们来看一些它的模式与反模式吧：</p>
 <p>###删除字符产前后空格<br>NSString -stringByTrimmingCharactersInSet: 是个你需要牢牢记住的方法。它经常会传入 NSCharacterSet +whitespaceCharacterSet 和 +whitespaceAndNewlineCharacterSet 来删除输入字符串的头尾的空白符号, 或者传入uppercaseLetterCharacterSet和lowercaseLetterCharacterSet删除首尾大小写</p>
@@ -446,7 +457,7 @@ string = [components componentsJoinedByString:@&quot; &quot;];
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wangjunling888.github.io/2016/08/24/NSCharacter​Set使用/" data-id="cjboxm6nz000135i3gnf7waoe" class="article-share-link">Teilen</a>
+      <a data-url="https://wangjunling888.github.io/2016/08/24/NSCharacter​Set使用/" data-id="cjboxu89x000156i32j0vx3uf" class="article-share-link">Teilen</a>
       
       
     </footer>
@@ -559,7 +570,7 @@ NSString *html = [[NSString alloc] initWithContentsOfURL:[NSURL URLWithString:@&
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wangjunling888.github.io/2016/08/24/字符串学习总结/" data-id="cjboxm6o5000635i3tnt205fu" class="article-share-link">Teilen</a>
+      <a data-url="https://wangjunling888.github.io/2016/08/24/字符串学习总结/" data-id="cjboxu8a2000656i3kcqjblyh" class="article-share-link">Teilen</a>
       
       
     </footer>

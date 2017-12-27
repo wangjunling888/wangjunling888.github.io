@@ -7,17 +7,17 @@
   
   <title>崇山峻岭</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="NSCharacter​Set使用= NSCharacterSet ，以及它的可变版本NSMutableCharacterSet，用面向对象的方式来表示一组Unicode字符。它经常与NSString及NSScanner组合起来使用，在不同的字符上做过滤、删除或者分割操作。为了给你提供这些字符是哪些字符的直观印象，请看看NSCharacterSet 提供的类方法：  alphanumericCha">
+  <meta name="description" content="NSCharacterSet使用= NSCharacterSet ，以及它的可变版本NSMutableCharacterSet，用面向对象的方式来表示一组Unicode字符。它经常与NSString及NSScanner组合起来使用，在不同的字符上做过滤、删除或者分割操作。为了给你提供这些字符是哪些字符的直观印象，请看看NSCharacterSet 提供的类方法：  alphanumericChar">
 <meta property="og:type" content="article">
 <meta property="og:title" content="崇山峻岭">
 <meta property="og:url" content="https://wangjunling888.github.io/2016/08/24/NSCharacter​Set使用/index.html">
 <meta property="og:site_name" content="崇山峻岭">
-<meta property="og:description" content="NSCharacter​Set使用= NSCharacterSet ，以及它的可变版本NSMutableCharacterSet，用面向对象的方式来表示一组Unicode字符。它经常与NSString及NSScanner组合起来使用，在不同的字符上做过滤、删除或者分割操作。为了给你提供这些字符是哪些字符的直观印象，请看看NSCharacterSet 提供的类方法：  alphanumericCha">
+<meta property="og:description" content="NSCharacterSet使用= NSCharacterSet ，以及它的可变版本NSMutableCharacterSet，用面向对象的方式来表示一组Unicode字符。它经常与NSString及NSScanner组合起来使用，在不同的字符上做过滤、删除或者分割操作。为了给你提供这些字符是哪些字符的直观印象，请看看NSCharacterSet 提供的类方法：  alphanumericChar">
 <meta property="og:locale" content="ZH-cn">
-<meta property="og:updated_time" content="2016-08-24T02:02:16.000Z">
+<meta property="og:updated_time" content="2017-12-27T10:48:51.168Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="崇山峻岭">
-<meta name="twitter:description" content="NSCharacter​Set使用= NSCharacterSet ，以及它的可变版本NSMutableCharacterSet，用面向对象的方式来表示一组Unicode字符。它经常与NSString及NSScanner组合起来使用，在不同的字符上做过滤、删除或者分割操作。为了给你提供这些字符是哪些字符的直观印象，请看看NSCharacterSet 提供的类方法：  alphanumericCha">
+<meta name="twitter:description" content="NSCharacterSet使用= NSCharacterSet ，以及它的可变版本NSMutableCharacterSet，用面向对象的方式来表示一组Unicode字符。它经常与NSString及NSScanner组合起来使用，在不同的字符上做过滤、删除或者分割操作。为了给你提供这些字符是哪些字符的直观印象，请看看NSCharacterSet 提供的类方法：  alphanumericChar">
   
     <link rel="alternate" href="/atom.xml" title="崇山峻岭" type="application/atom+xml">
   
@@ -80,24 +80,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>NSCharacter​Set使用<br>=</p>
+        <h1 id="NSCharacterSet使用"><a href="#NSCharacterSet使用" class="headerlink" title="NSCharacterSet使用"></a>NSCharacterSet使用</h1><p>=</p>
 <p>NSCharacterSet ，以及它的可变版本NSMutableCharacterSet，用面向对象的方式来表示一组Unicode字符。它经常与NSString及NSScanner组合起来使用，在不同的字符上做过滤、删除或者分割操作。为了给你提供这些字符是哪些字符的直观印象，请看看NSCharacterSet 提供的类方法：</p>
 <ul>
 <li>alphanumericCharacterSet                 //</li>
 <li>capitalizedLetterCharacterSet</li>
-<li>controlCharacterSet                     //控制符</li>
-<li>decimalDigitCharacterSet                //小数</li>
-<li>decomposableCharacterSet                //可分解</li>
-<li>illegalCharacterSet                    //非法字符</li>
-<li>letterCharacterSet                    //文字</li>
-<li>lowercaseLetterCharacterSet            //小写字母</li>
-<li>newlineCharacterSet                     //回车</li>
+<li>controlCharacterSet                 //控制符</li>
+<li>decimalDigitCharacterSet        //小数</li>
+<li>decomposableCharacterSet    //可分解</li>
+<li>illegalCharacterSet    //非法字符</li>
+<li>letterCharacterSet//文字</li>
+<li>lowercaseLetterCharacterSet//小写字母</li>
+<li>newlineCharacterSet     //回车</li>
 <li>nonBaseCharacterSet</li>
-<li>punctuationCharacterSet                //标点</li>
+<li>punctuationCharacterSet            //标点</li>
 <li>symbolCharacterSet</li>
-<li>uppercaseLetterCharacterSet             //大写字符</li>
-<li>whitespaceAndNewlineCharacterSet        //回车和空格</li>
-<li>whitespaceCharacterSet                //空格</li>
+<li>uppercaseLetterCharacterSet </li>
+<li>whitespaceAndNewlineCharacterSet//回车和空格</li>
+<li>whitespaceCharacterSet    //空格</li>
 </ul>
 <p>与它的名字所表述的相反，NSCharacterSet 跟 NSSet 一点关系都没有。<br>虽然底层实现不太一样，但是 NSCharacterSet 在概念上跟 NSIndexSet 还有点相似的。NSIndexSet，之前提到过，表示一个有序的不重复的无符号整数的集合。Unicode字符跟无符号整数类似，大致对应一些拼写表示。所以，一个 NSCharacterSet +lowercaseCharacterSet 字符集与一个包含97到122范围的 NSIndexSet 是等价的。<br>现在我们对理解 NSCharacterSet 的基本概念已经有了少许自信，让我们来看一些它的模式与反模式吧：</p>
 <p>###删除字符产前后空格<br>NSString -stringByTrimmingCharactersInSet: 是个你需要牢牢记住的方法。它经常会传入 NSCharacterSet +whitespaceCharacterSet 和 +whitespaceAndNewlineCharacterSet 来删除输入字符串的头尾的空白符号, 或者传入uppercaseLetterCharacterSet和lowercaseLetterCharacterSet删除首尾大小写</p>
@@ -114,7 +114,7 @@ string = [components componentsJoinedByString:@&quot; &quot;];
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wangjunling888.github.io/2016/08/24/NSCharacter​Set使用/" data-id="cjboxm6nz000135i3gnf7waoe" class="article-share-link">Teilen</a>
+      <a data-url="https://wangjunling888.github.io/2016/08/24/NSCharacter​Set使用/" data-id="cjboxu89x000156i32j0vx3uf" class="article-share-link">Teilen</a>
       
       
     </footer>
