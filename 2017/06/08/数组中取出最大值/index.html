@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>崇山峻岭</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1. 项目需求​    有一个模型数组arr, 其中模型model中有个字段num, 我需要找出所有模型中最大的一个 2. 解决方案分析​    我们第一印象肯定是遍历数组, 取出模型, 然后在取出num字段, 然后进行比较, 取出最大值. 但是本文, 就要另辟蹊径, 用一个更优雅的方法两行代买搞定 3. 代码1234// 通过kvc方式取出numNSArray *temArr = [arr va">
+<meta property="og:type" content="article">
+<meta property="og:title" content="崇山峻岭">
+<meta property="og:url" content="https://wangjunling888.github.io/2017/06/08/数组中取出最大值/index.html">
+<meta property="og:site_name" content="崇山峻岭">
+<meta property="og:description" content="1. 项目需求​    有一个模型数组arr, 其中模型model中有个字段num, 我需要找出所有模型中最大的一个 2. 解决方案分析​    我们第一印象肯定是遍历数组, 取出模型, 然后在取出num字段, 然后进行比较, 取出最大值. 但是本文, 就要另辟蹊径, 用一个更优雅的方法两行代买搞定 3. 代码1234// 通过kvc方式取出numNSArray *temArr = [arr va">
+<meta property="og:locale" content="ZH-cn">
+<meta property="og:updated_time" content="2017-06-08T02:17:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="崇山峻岭">
+<meta name="twitter:description" content="1. 项目需求​    有一个模型数组arr, 其中模型model中有个字段num, 我需要找出所有模型中最大的一个 2. 解决方案分析​    我们第一印象肯定是遍历数组, 取出模型, 然后在取出num字段, 然后进行比较, 取出最大值. 但是本文, 就要另辟蹊径, 用一个更优雅的方法两行代买搞定 3. 代码1234// 通过kvc方式取出numNSArray *temArr = [arr va">
+  
+    <link rel="alternate" href="/atom.xml" title="崇山峻岭" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">崇山峻岭</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Coding, Runing, Sharing</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wangjunling888.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-数组中取出最大值" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/08/数组中取出最大值/" class="article-date">
+  <time datetime="2017-06-08T02:17:43.000Z" itemprop="datePublished">2017-06-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-项目需求"><a href="#1-项目需求" class="headerlink" title="1. 项目需求"></a>1. 项目需求</h3><p>​    有一个模型数组arr, 其中模型model中有个字段num, 我需要找出所有模型中最大的一个</p>
+<h3 id="2-解决方案分析"><a href="#2-解决方案分析" class="headerlink" title="2. 解决方案分析"></a>2. 解决方案分析</h3><p>​    我们第一印象肯定是遍历数组, 取出模型, 然后在取出num字段, 然后进行比较, 取出最大值. 但是本文, 就要另辟蹊径, 用一个更优雅的方法两行代买搞定</p>
+<h3 id="3-代码"><a href="#3-代码" class="headerlink" title="3. 代码"></a>3. 代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 通过kvc方式取出num</span><br><span class="line">NSArray *temArr = [arr valueForKeyPath:@&quot;num&quot;];</span><br><span class="line">// 这步是重点,直接取出最大值</span><br><span class="line">CGFloat maxNum = [[temArr valueForKeyPath:@&quot;@max.integerValue&quot;] integerValue];</span><br></pre></td></tr></table></figure>
+<h3 id="4-注意事项"><a href="#4-注意事项" class="headerlink" title="4. 注意事项"></a>4. 注意事项</h3><p>​    如果你的模型中的num不是对象, 那么第一行代码就会直接崩掉, 因为基础类型的数是不能放到oc数组中的 , 所以, 建立模型的时候一定要用NSNmuber类型的num字段, 这样才能放入temArr数组, 当然如果你直接拥有一个装有NSNmuber类型的数组, 直接执行第二步, 就可以获得组大值.</p>
+<h3 id="5-扩展"><a href="#5-扩展" class="headerlink" title="5. 扩展"></a>5. 扩展</h3><p>​    仿照上面的用法还可以获得数组中的最小值, 平均值等的 key值如下, </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@”@max.floatValue”//（获取最大值）， </span><br><span class="line">@”@min.floatValue”//（获取最小值）， </span><br><span class="line">@”@avg.floatValue” //(获取平均值)， </span><br><span class="line">@”@count.floatValue”//(获取数组大小)</span><br></pre></td></tr></table></figure>
+<p>好了这次就总结到这里, 希望看到此页的你撸码愉快!!!!!!</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wangjunling888.github.io/2017/06/08/数组中取出最大值/" data-id="cjboxm6o6000735i3p8ooe5hv" class="article-share-link">Teilen</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/06/16/画图/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/14/JPush的坑/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/24/iOS开发之VFL布局总结/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/18/iOS开发 const 和 static 关键字的作用/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/16/画图/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/08/数组中取出最大值/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/14/JPush的坑/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 崇山峻岭<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

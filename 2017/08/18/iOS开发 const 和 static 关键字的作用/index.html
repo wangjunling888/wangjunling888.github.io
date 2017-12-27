@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>崇山峻岭</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="iOS开发 const 和 static 关键字的作用1. static1)在函数体内，一个被声明为静态的变量在这一函数被调用过程中维持其值不变（该变量存放在静态变量区）。 2) 在模块内（但在函数体外），一个被声明为静态的变量可以被模块内所用函数访问，但不能被模块外其它函数访问。它是一个本地的全局变量。 3) 在模块内，一个被声明为静态的函数只可被这一模块内的其它函数调用。那就是，这个函数被限制">
+<meta property="og:type" content="article">
+<meta property="og:title" content="崇山峻岭">
+<meta property="og:url" content="https://wangjunling888.github.io/2017/08/18/iOS开发 const 和 static 关键字的作用/index.html">
+<meta property="og:site_name" content="崇山峻岭">
+<meta property="og:description" content="iOS开发 const 和 static 关键字的作用1. static1)在函数体内，一个被声明为静态的变量在这一函数被调用过程中维持其值不变（该变量存放在静态变量区）。 2) 在模块内（但在函数体外），一个被声明为静态的变量可以被模块内所用函数访问，但不能被模块外其它函数访问。它是一个本地的全局变量。 3) 在模块内，一个被声明为静态的函数只可被这一模块内的其它函数调用。那就是，这个函数被限制">
+<meta property="og:locale" content="ZH-cn">
+<meta property="og:updated_time" content="2017-08-18T06:41:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="崇山峻岭">
+<meta name="twitter:description" content="iOS开发 const 和 static 关键字的作用1. static1)在函数体内，一个被声明为静态的变量在这一函数被调用过程中维持其值不变（该变量存放在静态变量区）。 2) 在模块内（但在函数体外），一个被声明为静态的变量可以被模块内所用函数访问，但不能被模块外其它函数访问。它是一个本地的全局变量。 3) 在模块内，一个被声明为静态的函数只可被这一模块内的其它函数调用。那就是，这个函数被限制">
+  
+    <link rel="alternate" href="/atom.xml" title="崇山峻岭" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">崇山峻岭</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Coding, Runing, Sharing</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wangjunling888.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-iOS开发 const 和 static 关键字的作用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/18/iOS开发 const 和 static 关键字的作用/" class="article-date">
+  <time datetime="2017-08-18T06:41:35.000Z" itemprop="datePublished">2017-08-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="iOS开发-const-和-static-关键字的作用"><a href="#iOS开发-const-和-static-关键字的作用" class="headerlink" title="iOS开发 const 和 static 关键字的作用"></a>iOS开发 const 和 static 关键字的作用</h3><h4 id="1-static"><a href="#1-static" class="headerlink" title="1. static"></a>1. static</h4><p>1)在函数体内，一个被声明为静态的变量在这一函数被调用过程中维持其值不变（该变量存放在静态变量区）。</p>
+<p>2) 在模块内（但在函数体外），一个被声明为静态的变量可以被模块内所用函数访问，但不能被模块外其它函数访问。它是一个本地的全局变量。</p>
+<p>3) 在模块内，一个被声明为静态的函数只可被这一模块内的其它函数调用。那就是，这个函数被限制在声明它的模块的本地范围内使用。</p>
+<p>　</p>
+<h3 id="2-const"><a href="#2-const" class="headerlink" title="2.const"></a>2.const</h3><p>如果你读过Bjarne的《The C++ Programming Language》，就应该接触过他所提到的办法，把*读成”pointer to(指向)”，同时声明从右向左读。解释如下： </p>
+<p>char <em> const p; // p is a const pointer to char; p是指向char的常量指针(char不是常量)char const </em> p; // p is a pointer to const char;  p是指向常量char的指针(p不是常量)const char <em> p; // 同上。因为C++标准规定，const关键字放在类型或变量名之前等价的。C++里面没有const</em>的运算符</p>
+<p>1) 关键字const的作用是为给读你代码的人传达非常有用的信息，实际上，声明一个参数为常量是为了告诉了用户这个参数的应用目的。如果你曾花很多时间清理其它人留下的垃圾，你就会很快学会感谢这点多余的信息。（当然，懂得用const的程序员很少会留下的垃圾让别人来清理的。）</p>
+<p>2) 通过给优化器一些附加的信息，使用关键字const也许能产生更紧凑的代码。</p>
+<p>3) 合理地使用关键字const可以使编译器很自然地保护那些不希望被改变的参数，防止其被无意的代码修改。简而言之，这样可以减少bug的出现。</p>
+<p>const关键字至少有下列n个作用：</p>
+<p>（1）欲阻止一个变量被改变，可以使用const关键字。在定义该const变量时，通常需要对它进行初始化，因为以后就没有机会再去改变它了；<br>（2）对指针来说，可以指定指针本身为const，也可以指定指针所指的数据为const，或二者同时指定为const；<br>（3）在一个函数声明中，const可以修饰形参，表明它是一个输入参数，在函数内部不能改变其值；<br>（4）对于类的成员函数，若指定其为const类型，则表明其是一个常函数，不能修改类的成员变量；<br>（5）对于类的成员函数，有时候必须指定其返回值为const类型，以使得其返回值不为“左值”。例如：<br>const classA operator<em>(const classA&amp; a1,const classA&amp; a2);<br>　　operator</em>的返回结果必须是一个const对象。如果不是，这样的变态代码也不会编译出错：<br>classA a, b, c;<br>(a <em> b) = c; // 对a</em>b的结果赋值<br>　　操作(a * b) = c显然不符合编程者的初衷，也没有任何意义。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wangjunling888.github.io/2017/08/18/iOS开发 const 和 static 关键字的作用/" data-id="cjboxm6o1000235i3frdd5ujr" class="article-share-link">Teilen</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/24/iOS开发之VFL布局总结/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/06/16/画图/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/24/iOS开发之VFL布局总结/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/18/iOS开发 const 和 static 关键字的作用/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/16/画图/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/08/数组中取出最大值/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/14/JPush的坑/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 崇山峻岭<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
