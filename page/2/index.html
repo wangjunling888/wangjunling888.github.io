@@ -162,79 +162,151 @@
     
     <div class="cube-content">
         <div class="cube-left">
-            <div class="cube-article">
-    <h1 class="title"></h1>
-    
-    <div class="cube-article-header">
-        <div class="cube-article-date">
-            <i class="cube-icon cube-icon-date" aria-hidden="true"></i>
-            <!-- moment.js对象 -->
-            2017-08-24
+            
+<div class="cube-excerpt" id="cube-excerpt-">
+    <header class="cube-excerpt-header">
+        <h1><a href="/2016/08/24/字符串学习总结/"></a></h1>
+        <div class="cube-excerpt-header-msg">
+            <div class="cube-excerpt-date">
+                <i class="cube-icon cube-icon-date" aria-hidden="true"></i>
+                2016-08-24
+            </div>
+            <div class="cube-excerpt-tags">
+                <i class="cube-icon cube-icon-tag" aria-hidden="true"></i>
+                
+            </div>
         </div>
-        <div class="cube-article-tags">
-    <i class="cube-icon cube-icon-tag" aria-hidden="true"></i>
+    </header>
+    <article class="cube-excerpt-entry cube-markdown">
+        
+        
+           <p>#字符串学习总结</p>
+<p>##1. 创建</p>
+<pre><code>//构造方法
+NSString *s1 = [[NSString alloc] initWithFormat:@&quot;%@ 真简单&quot;, @&quot;iOS开发&quot;];
+//类方法
+NSString *s2 = [NSString stringWithFormat:@&quot;%@ 好简单啊&quot;, @&quot;OC&quot;];
+// 将 C 语言字符串转换成 OC 字符串
+NSString *s3 = [[NSString alloc] initWithUTF8String:&quot;hello iOS&quot;];
+//从文件读取
+NSString *file = [[NSString alloc] initWithContentsOfFile:@&quot;/Users/apple/Desktop/Launchable.h&quot; encoding:NSUTF8StringEncoding error:nil];
+//从url读取
+NSString *html = [[NSString alloc] initWithContentsOfURL:[NSURL URLWithString:@&quot;http://www.youdao.com&quot;] encoding:NSUTF8StringEncoding error:nil];
+</code></pre><p>##2. 查看<br>    //1. 比较<br>    BOOL isEqual = [@”123” isEqualToString:@”123”];<br>    //下面这个方法可以根据options进行排序,常见的有按数字排序(options:NSNumericSearch),<br>    //有按照字符串排序, 还可以根据正则表达式排序<br>    NSComparisonResult result = [@”123” compare:@”124” options:NSNumericSearch]);</p>
+<pre><code>//2. 判断字符串的前后缀, 返回值均为bool类型
+[@&quot;123.txt&quot; hasSuffix:@&quot;.txt&quot;]
+[@&quot;http://www.baidu.com hasPrefix:@&quot;http://&quot;]
+
+//3. 根据range取字符串
+//3.1 从字符串中获得子字符串的range
+ NSRange range = [@&quot;abcdefgcdefg&quot;; rangeOfString:@&quot;acd&quot;];
+ //可以通过判断range.location 判断有没有找到
+ if(range.location == NSNotFound) {
+     NSLog(@&quot;没有找到&quot;);
+ }
+
+
+ //3.2下面是一个例子寻找字符串中所有包含子字符串的位置和长度, 
+   str = @&quot;123abcd456defg123ab45qw&quot;;
+
+
+    NSRange range = NSMakeRange(0, 0);
+    do {
+        NSUInteger loc = range.location + range.length;
+        NSUInteger len = str.length - loc;
+        range = [str rangeOfString:@&quot;3a&quot; options:1 range:NSMakeRange(loc, len)];
+
+        if (range.location != NSNotFound) {
+            NSLog(@&quot;%@&quot;, NSStringFromRange(range));
+        }
+    } while (range.location != NSNotFound);
+
+  //4. 获取子字符串
+  // 子字符串 substring
+    NSString *str = @&quot;0123456789&quot;;
+    NSString *s1 = [str substringFromIndex:5];
+    NSLog(@&quot;%@&quot;, s1);
+    NSString *s2 = [str substringToIndex:5];
+    NSLog(@&quot;%@&quot;, s2);
+    // 在科学计算中有一个习惯, 表示范围的时候, 左边取得到, 右边取不到
+    // arc4random_uniform(10)
+    // 左闭右开区间
+    NSRange range = NSMakeRange(3, 3);
+    NSString *s3 = [str substringWithRange:range];
+    NSLog(@&quot;%@&quot;, s3);
+
+//5. 通过正则匹配字符串
+// 正则表达式, regular expression
+    // [^字符] 含义是非该字符的字符
+    // [^&lt;] 不是 &lt; 的任意字符
+    // + 放在通配符的后面, 表示多个的意思
+    // [^&lt;]+ 就是任意多个不由&lt;组合而来的字符串
+    NSString *mark = @&quot;&lt;sapn style\&quot;color:red\&quot;&gt;1234567890987654321qazwsxedc&lt;/span&gt;&quot;;
+    NSRange range = [mark rangeOfString:@&quot;&gt;[^&lt;]+&lt;&quot; options:1024];
+    range = NSMakeRange(range.location + 1, range.length - 2);
+    NSString *res = [mark substringWithRange:range];
+    NSLog(@&quot;%@&quot;, res);
+
+ //6. 其他用法
+ //去掉首尾空格
+ NSString *str1 = @&quot;   admin    &quot;;
+    NSLog(@&quot;|%@|&quot;, str1);
+    str1 = [str1 stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSLog(@&quot;|%@|&quot;, str1);
+   //去掉收尾大写 
+    NSString *str2 = @&quot;ABCadminDEF&quot;;
+    NSLog(@&quot;|%@|&quot;, str2);
+    str2 = [str2 stringByTrimmingCharactersInSet:[NSCharacterSet uppercaseLetterCharacterSet]];
+    NSLog(@&quot;|%@|&quot;, str2);
+    去掉首尾小写
+    NSString *str3 = @&quot;abcADMINdefg&quot;;
+    NSLog(@&quot;|%@|&quot;, str3);
+    str3 = [str3 stringByTrimmingCharactersInSet:[NSCharacterSet lowercaseLetterCharacterSet]];
+    NSLog(@&quot;|%@|&quot;, str3);
+    //去掉/
+    NSString *path = @&quot;/Users/apple/Destop/&quot;;
+    path = [path stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@&quot;/&quot;]];
+    NSLog(@&quot;path = %@&quot;, path);
+</code></pre>
+        
+    </article>
+    <footer class="cube-excerpt-footer">
+        <a class="cube-excerpt-more" href="/2016/08/24/字符串学习总结/">Read More</a>
+    </footer>
+</div>
+
+
+
+<ul class="cube-pagination cube-pagination-6">
     
-</div>
-    </div>
+    <li class="cube-pagination-prev">
+        <a href="/">« Prev</a>
+    </li>
     
-    <div class="cube-article-content cube-markdown">
+    
         
-        <h1 id="iOS开发之VFL布局总结"><a href="#iOS开发之VFL布局总结" class="headerlink" title="iOS开发之VFL布局总结"></a>iOS开发之VFL布局总结</h1><p>VFL是苹果推出的用来AutoLayout布局的一门比较形象的语言, 本身为字符串,虽然用起来比较麻烦,  但是相比直接使用苹果的另一个套布局方案要少写一些代码,  那么问题来了, github上那么多自动布局的框架, 简单又好用, 为什么要用这么复杂的代码去布局呢,  之前我也这么想, 直到有一天自己想封装一个框架的的时候才发现, 不能处处依赖别人的框架去封装, 因为这样的话, 你封装的框架几乎没法用.  举个例子, 假设你的框架用了AFN的2.0版本, 那么对于使用框架的人来说, 他们项目中如果使用了AFN3.0, 那么肯定出出现一大堆兼容问题,  因此对于自己的封装的框架, 要以原生为主. 废话不多说 下面总结一下我半天的的学习成果: VFL布局</p>
-<p>下面是VFL使用的一个核心方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">+ (NSArray&lt;__kindof NSLayoutConstraint *&gt; *)constraintsWithVisualFormat:(NSString *)format </span><br><span class="line">  options:(NSLayoutFormatOptions)opts </span><br><span class="line">  metrics:(nullable NSDictionary&lt;NSString *,id&gt; *)metrics </span><br><span class="line">  	views:(NSDictionary&lt;NSString *, id&gt; *)views;</span><br></pre></td></tr></table></figure>
-<p>该方法一共有四个参数, 接下来将一一讲解四个参数的含义及其使用:</p>
-<ol>
-<li>format参数: 这个是具体布局的字符串,形如 <strong>@”V:|-10-[view1(50.0)]-20-[view2(50.0)]”</strong> 稍后再讲解此字符串的意思;</li>
-<li>option参数: 这个参数是一个可复选的参数,  主要用来布局view的对齐方式;</li>
-<li>metrics参数: 这个参数是替换VFL字符串中的变量用的,  如果这么写: <strong>@{@”topMargin”:@10}</strong>  则第一条中的布局可以替换成下面的写法: <strong>@”V:|-10-[view1(50.0)]-20-[view2(50.0)]”</strong> 其实就是替换字符串中的变量使用;</li>
-<li>views参数: 这个参数是用来存储本条VFL语句中所有用到的View,   可以直接创建字典  <strong>@{@”view1”:view1, @”view2”:view2}</strong> 对于这个参数苹果有一个特定的宏, <strong>NSDictionaryOfVariableBindings()</strong>  因此也可以这样写 <strong>NSDictionaryOfVariableBindings(view1, view2)</strong> ;</li>
-</ol>
-<p>该方法返回的是一个装有约束的数组集合;可以直接添加到设定约束view的父view上;</p>
-<p>如果你对上面的解释不太理解下面用代码具体举个列子,相信你立马回恍然大悟</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    [self testConstraint];</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">- (void)testConstraint &#123;//测试布局</span><br><span class="line"></span><br><span class="line">    UIView *supView1 = [[UIView alloc] init];</span><br><span class="line">    supView1.backgroundColor =  [UIColor blueColor];</span><br><span class="line">    </span><br><span class="line">    UIView *supView2 = [[UIView alloc] init];</span><br><span class="line">    supView2.backgroundColor =  [UIColor blueColor];</span><br><span class="line"></span><br><span class="line">    [self.view addSubview:supView1];</span><br><span class="line">    [self.view addSubview:supView2];</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    //由于AutoLayout布局和Autoresizing布局是冲突的,因此要使用AutoLayout必须要关闭Autoresizing</span><br><span class="line">    self.view.translatesAutoresizingMaskIntoConstraints = NO;</span><br><span class="line">    supView2.translatesAutoresizingMaskIntoConstraints = NO;</span><br><span class="line">    supView1.translatesAutoresizingMaskIntoConstraints = NO;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    //此语句的意思是 垂直方向: supView1距离父view的距离为 topMargin,</span><br><span class="line">    //supView1的垂直方向的宽度为50.0, supView2距离supView1为20, 并且高度也为50.0;</span><br><span class="line">    NSString *top = @&quot;V:|-topMargin-[supView1(50.0)]-20-[supView2(50.0)]&quot;;</span><br><span class="line">    //解释方法同上</span><br><span class="line">    NSString *left = @&quot;H:|-10-[supView1(50.0)]&quot;;</span><br><span class="line">    NSString *v2T = @&quot;[supView2(60.0)]&quot;;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    //此处需要对topMargin参数进行解释, 其实就是给topMargin赋值;</span><br><span class="line">    NSArray *s1T = [NSLayoutConstraint constraintsWithVisualFormat:top options:NSLayoutFormatAlignAllRight metrics:@&#123;@&quot;topMargin&quot;:@100&#125; views:NSDictionaryOfVariableBindings(supView1, supView2)];</span><br><span class="line"></span><br><span class="line">    NSArray *s1L = [NSLayoutConstraint constraintsWithVisualFormat:left options:0 metrics:nil views:NSDictionaryOfVariableBindings(supView1)];</span><br><span class="line">    NSArray *v2Tc = [NSLayoutConstraint constraintsWithVisualFormat:v2T options:0 metrics:nil views:NSDictionaryOfVariableBindings(supView2)];</span><br><span class="line">    </span><br><span class="line">    //一般需要把约束添加到父view上</span><br><span class="line">    [self.view addConstraints:v2Tc];</span><br><span class="line">    [self.view addConstraints:s1T];</span><br><span class="line">    [self.view addConstraints:s1L];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>效果如下图:</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2003889-b38986a376979dbb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="40155A04-EA83-4B25-A802-B601F830EA29.png"></p>
-<p>上面的例子只是简单的使用了一下VFL语句, 其实还有更多的东西, 需要自己去慢慢的理解体会多使用, 熟练了就好了,  对于其他的VFL语句的用法请参考附录里面的详细使用</p>
-<h3 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h3><ol>
-<li><p>符号含义</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">|: 	表示父视图</span><br><span class="line">-:  表示距离</span><br><span class="line">V:  表示垂直</span><br><span class="line">H:  表示水平</span><br><span class="line">&gt;=: 表示视图间距、宽度和高度必须大于或等于某个值</span><br><span class="line">    &lt;= :表示视图间距、宽度和高度必须小宇或等于某个值</span><br><span class="line">    == :表示视图间距、宽度或者高度必须等于某个值</span><br><span class="line">@:  优先级 最大为  1000</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>一般用法:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">|-[view]-|: 						    视图处在父视图的左右边缘内</span><br><span class="line">|-[view]  :  		 					视图处在父视图的左边缘</span><br><span class="line">|[view]   :   							视图和父视图左边对齐</span><br><span class="line">V:[view(100.)]  :  					    设置视图的高度 </span><br><span class="line">H:[view(100.)]  :  					    设置视图的宽度</span><br><span class="line">|-30.0-[view]-30.0-|:       			表示离父视图 左右间距  30</span><br><span class="line">|-[view(view1)]-[view1]-| :    			View和view1视图宽度一样，并且在父视图内</span><br><span class="line">V:|-padding-[imageView]-&gt;=0-[button]-padding| : 表示离父视图的距离为Padding,这两个视图间距必须大于或等于0并且距离底部父视图为padding。此时必须对 metrics参数赋值eg.  metrics:@&#123;@&quot;topMargin&quot;:@100&#125;;</span><br><span class="line"></span><br><span class="line">[wideView(&gt;=60@700)]  :视图的宽度为至少为60 优先级为700</span><br><span class="line"></span><br><span class="line">最后要注意, H可以忽略, 默认为水平布局 , V必须要写!!!</span><br></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-</ol>
-<p>好了码了半天终于大功告成, 希望此博客对你有帮助, 记得点赞哦~</p>
-
-    </div>
-</div>
-
-<div class="cube-article-nav">
-    <ul>
+            
+            <li class="cube-pagination-index">
+                <a href="/">1</a>
+            </li>
+            
         
-        <li class="prev">
-            <a href="/2018/01/06/理财总结/">
-                <i class="cube-icon cube-prev" aria-hidden="true"></i>
-                
-            </a>
-        </li>
+            
+            <li class="cube-pagination-index disabled">
+                <span>2</span>
+            </li>
+            
         
-        
-        <li class="next">
-            <a href="/2017/08/18/iOS开发 const 和 static 关键字的作用/">
-                
-                <i class="cube-icon cube-next" aria-hidden="true"></i>
-            </a>
-        </li>
-        
-    </ul>
-</div>
+    
 
+    
+    <li class="cube-pagination-next disabled">
+        <span>Next »</span>
+    </li>
+    
+</ul>
 
-<!-- TODO 根据theme.comment的内容进行入口选择 -->
-
-
-
+<!--其他组件后续添加-->
         </div>
         <div class="cube-right">
             
