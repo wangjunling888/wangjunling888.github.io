@@ -165,6 +165,61 @@
             
 <div class="cube-excerpt" id="cube-excerpt-">
     <header class="cube-excerpt-header">
+        <h1><a href="/2016/08/24/NSCharacter​Set使用/"></a></h1>
+        <div class="cube-excerpt-header-msg">
+            <div class="cube-excerpt-date">
+                <i class="cube-icon cube-icon-date" aria-hidden="true"></i>
+                2016-08-24
+            </div>
+            <div class="cube-excerpt-tags">
+                <i class="cube-icon cube-icon-tag" aria-hidden="true"></i>
+                
+            </div>
+        </div>
+    </header>
+    <article class="cube-excerpt-entry cube-markdown">
+        
+        
+           <h1 id="NSCharacterSet使用"><a href="#NSCharacterSet使用" class="headerlink" title="NSCharacterSet使用"></a>NSCharacterSet使用</h1><p>=</p>
+<p>NSCharacterSet ，以及它的可变版本NSMutableCharacterSet，用面向对象的方式来表示一组Unicode字符。它经常与NSString及NSScanner组合起来使用，在不同的字符上做过滤、删除或者分割操作。为了给你提供这些字符是哪些字符的直观印象，请看看NSCharacterSet 提供的类方法：</p>
+<ul>
+<li>alphanumericCharacterSet                 //</li>
+<li>capitalizedLetterCharacterSet</li>
+<li>controlCharacterSet                 //控制符</li>
+<li>decimalDigitCharacterSet        //小数</li>
+<li>decomposableCharacterSet    //可分解</li>
+<li>illegalCharacterSet    //非法字符</li>
+<li>letterCharacterSet//文字</li>
+<li>lowercaseLetterCharacterSet//小写字母</li>
+<li>newlineCharacterSet     //回车</li>
+<li>nonBaseCharacterSet</li>
+<li>punctuationCharacterSet            //标点</li>
+<li>symbolCharacterSet</li>
+<li>uppercaseLetterCharacterSet </li>
+<li>whitespaceAndNewlineCharacterSet//回车和空格</li>
+<li>whitespaceCharacterSet    //空格</li>
+</ul>
+<p>与它的名字所表述的相反，NSCharacterSet 跟 NSSet 一点关系都没有。<br>虽然底层实现不太一样，但是 NSCharacterSet 在概念上跟 NSIndexSet 还有点相似的。NSIndexSet，之前提到过，表示一个有序的不重复的无符号整数的集合。Unicode字符跟无符号整数类似，大致对应一些拼写表示。所以，一个 NSCharacterSet +lowercaseCharacterSet 字符集与一个包含97到122范围的 NSIndexSet 是等价的。<br>现在我们对理解 NSCharacterSet 的基本概念已经有了少许自信，让我们来看一些它的模式与反模式吧：</p>
+<p>###删除字符产前后空格<br>NSString -stringByTrimmingCharactersInSet: 是个你需要牢牢记住的方法。它经常会传入 NSCharacterSet +whitespaceCharacterSet 和 +whitespaceAndNewlineCharacterSet 来删除输入字符串的头尾的空白符号, 或者传入uppercaseLetterCharacterSet和lowercaseLetterCharacterSet删除首尾大小写</p>
+<p>###删除字符串中所有空格<br>假设你去掉字符串两端的多余空格之后，还想去除单词之间的多余空格，这里有个非常简便的方法：</p>
+<pre><code>NSString *string = @&quot;Lorem    ipsum dolar   sit  amet.&quot;;
+string = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+
+NSArray *components = [string componentsSeparatedByCharactersInSet:[NSCharacterSet     whitespaceCharacterSet]];
+components = [components filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@&quot;self     &lt;&gt; &apos;&apos;&quot;]];
+string = [components componentsJoinedByString:@&quot; &quot;];
+</code></pre><p>首先，删除字符串首尾的空格；然后用 NSString -componentsSeparatedByCharactersInSet: 在空格处将字符串分割成一个 NSArray；再用一个 NSPredicate 去除空串；最后，用 NSArray -componentsJoinedByString: 用单个空格符将数组重新拼成字符串。注意：这种方法仅适用于英语这种用空格分割的语言</p>
+<p>###字符串分词<br>不要用 NSCharacterSet 来分词。 用 CFStringTokenizer 来替代它。<br>你用 componentsSeparatedByCharactersInSet: 来清理用户输入是可以谅解的，但是用它来做更复杂的事情，你将陷入痛苦的深渊。<br>为什么？请记住，语言并不是都用空格作为词的分界。虽然实际上以空格分界的语言使用非常广泛。但哪怕只算上中国和日本就已经有十多亿人，占了世界人口总量的 16%。<br>……即使是用空格分隔的语言，分词也有一些模棱两可的边界条件，特别是复合词汇和标点符号。<br>以上只为说明：如果你想将字符串分成有意义的单词，那么请用 CFStringTokenizer （或者 enumerateSubstringsInRange:options:usingBlock:）吧。</p>
+
+        
+    </article>
+    <footer class="cube-excerpt-footer">
+        <a class="cube-excerpt-more" href="/2016/08/24/NSCharacter​Set使用/">Read More</a>
+    </footer>
+</div>
+
+<div class="cube-excerpt" id="cube-excerpt-">
+    <header class="cube-excerpt-header">
         <h1><a href="/2016/08/24/字符串学习总结/"></a></h1>
         <div class="cube-excerpt-header-msg">
             <div class="cube-excerpt-date">
@@ -346,7 +401,7 @@ NSString *html = [[NSString alloc] initWithContentsOfURL:[NSURL URLWithString:@&
     <a title="Coding, Runing, Sharing">Coding, Runing, Sharing</a>
     
     <div class="count">
-        <a class="count articles"><span>11</span>Article</a>
+        <a class="count articles"><span>12</span>Article</a>
         <a class="count tags"><span>0</span>Tags</a>
         <a class="count categories"><span>0</span>Categories</a>
     </div>
@@ -385,7 +440,7 @@ NSString *html = [[NSString alloc] initWithContentsOfURL:[NSURL URLWithString:@&
                     <span>1</span>
                 </p>
                 <p class="title">
-                    <a href="/2018/01/06/理财总结/" title=""></a>
+                    <a href="/2018/06/12/多线程中的锁/" title=""></a>
                 </p>
             </div>
             
@@ -399,7 +454,7 @@ NSString *html = [[NSString alloc] initWithContentsOfURL:[NSURL URLWithString:@&
                     <span>2</span>
                 </p>
                 <p class="title">
-                    <a href="/2017/08/24/iOS开发之VFL布局总结/" title=""></a>
+                    <a href="/2018/01/06/理财总结/" title=""></a>
                 </p>
             </div>
         </li>
@@ -412,7 +467,7 @@ NSString *html = [[NSString alloc] initWithContentsOfURL:[NSURL URLWithString:@&
                     <span>3</span>
                 </p>
                 <p class="title">
-                    <a href="/2017/08/18/iOS开发 const 和 static 关键字的作用/" title=""></a>
+                    <a href="/2017/08/24/iOS开发之VFL布局总结/" title=""></a>
                 </p>
             </div>
         </li>
@@ -425,7 +480,7 @@ NSString *html = [[NSString alloc] initWithContentsOfURL:[NSURL URLWithString:@&
                     <span>4</span>
                 </p>
                 <p class="title">
-                    <a href="/2017/06/16/画图/" title=""></a>
+                    <a href="/2017/08/18/iOS开发 const 和 static 关键字的作用/" title=""></a>
                 </p>
             </div>
         </li>
@@ -438,7 +493,7 @@ NSString *html = [[NSString alloc] initWithContentsOfURL:[NSURL URLWithString:@&
                     <span>5</span>
                 </p>
                 <p class="title">
-                    <a href="/2017/06/08/数组中取出最大值/" title=""></a>
+                    <a href="/2017/06/16/画图/" title=""></a>
                 </p>
             </div>
         </li>

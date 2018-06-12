@@ -165,6 +165,62 @@
             
 <div class="cube-excerpt" id="cube-excerpt-">
     <header class="cube-excerpt-header">
+        <h1><a href="/2018/06/12/多线程中的锁/"></a></h1>
+        <div class="cube-excerpt-header-msg">
+            <div class="cube-excerpt-date">
+                <i class="cube-icon cube-icon-date" aria-hidden="true"></i>
+                2018-06-12
+            </div>
+            <div class="cube-excerpt-tags">
+                <i class="cube-icon cube-icon-tag" aria-hidden="true"></i>
+                
+            </div>
+        </div>
+    </header>
+    <article class="cube-excerpt-entry cube-markdown">
+        
+        
+           <h1 id="多线程中的锁"><a href="#多线程中的锁" class="headerlink" title="多线程中的锁"></a>多线程中的锁</h1><p>今日学习笔记:</p>
+<ol>
+<li><p><strong>atomic</strong>  作为iOS开发者对这个单次可能不算熟悉, 因为iOS定位于移动端, 为了降低APP的复杂度, 苹果规定UI操作必须要在主线程上操作, 所以我们所有的UI控件属性修饰符必须为<strong>nonatomic</strong> 这个单次恐怕没有不认识的吧! 那么atomic有啥作用呢, atomic的术语叫做原子的, 即当一个字段设置为atomic时, 这个字段同一时间只能被一个线程去修改, 也叫自旋锁. 下面为示例代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//原子属性的name</span><br><span class="line">@property (atomic) NSString *name;</span><br><span class="line"></span><br><span class="line">//在多个线程中需要修改</span><br><span class="line">- (void)updateName &#123;</span><br><span class="line">    dispatch_async(dispatch_get_global_queue(0, 0), ^&#123;</span><br><span class="line">        self.name = @&quot;wangwang&quot;;</span><br><span class="line">    &#125;); //线程1</span><br><span class="line">    </span><br><span class="line">    dispatch_async(dispatch_get_global_queue(0, 0), ^&#123;</span><br><span class="line">        self.name = @&quot;liuliu&quot;;</span><br><span class="line">    &#125;); //线程2</span><br><span class="line">    </span><br><span class="line">    //当代码执行线程1时, name的产生自旋锁, 不允许其他线程来读取, 这时候就避免了在第一次修改的时候,同事进行第二次修改, 当然上面代码仅仅是为了说明问题, 才把两个线程写到一个方法中,实际应用中肯定不是这个样子的, 实际使用会更加复杂.</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>@synchronized() {}</strong></p>
+<p>自旋锁能保证属性本身不被修改但是下面这种情况可能就不太好办了 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">@interface JLUser : NSObject</span><br><span class="line">//名字</span><br><span class="line">@property (atomic, strong) NSString *name;</span><br><span class="line">//职业</span><br><span class="line">@property (atomic, strong) NSString *profession;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//调用此更新代码结果就可能和想的不太一样</span><br><span class="line">- (void)updateUser &#123;</span><br><span class="line">    dispatch_async(dispatch_get_global_queue(0, 0), ^&#123;</span><br><span class="line">        [self updateUserWithName:@&quot;张三&quot; profession:@&quot;老师&quot;];</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    dispatch_async(dispatch_get_global_queue(0, 0), ^&#123;</span><br><span class="line">        [self updateUserWithName:@&quot;李四&quot; profession:@&quot;程序员&quot;];</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (void)updateUserWithName:(NSString *)name profession:(NSString *)profession &#123;</span><br><span class="line">    self.user.name = name;</span><br><span class="line">    self.user.profession = profession;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//执行上面的更新代码后, 得到的user 可能是这样的, 张三 程序员, 李四 老师,  这是为啥呢, 主要是当第一个线程给name赋值写数据时,  第二个线程不能再去给name赋值, 很可能第二个线程就直接给age赋值了, 所以最后可能会导致name和profession对应不上为了解决这种问题我么引入  @synchronized () &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>@synchronized() {} 是同步所, 小括号中传入一个固定不变的对象, 一般是要锁的对象, 也可以为其他对象, 花括号中为对应需要锁定的读写代码块, 这样当程序进入到花括号中是, 其他线程就无法再次对锁定的代码块进行调用, 上面的代码需要改动的地方如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (void)updateUserWithName:(NSString *)name profession:(NSString *)profession &#123;</span><br><span class="line">    @synchronized (self.user) &#123;</span><br><span class="line">        self.user.name = name;</span><br><span class="line">        self.user.profession = profession;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>NSLock</strong></p>
+<p>锁是进入临界区的基础构件。atomic 属性和 @synchronized 块是为了实现便捷实用的高级别抽象, 而NSLock是更低级别的锁  </p>
+<p>使用如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@interface ThreadSafeClass () &#123; </span><br><span class="line">	NSLock *_lock; </span><br><span class="line">&#125;</span><br><span class="line">@end</span><br><span class="line">-(instancetype)init &#123; </span><br><span class="line">    if(self = [super init]) &#123;</span><br><span class="line">		_lock = [NSLock new]; </span><br><span class="line">	&#125;</span><br><span class="line">	return self; </span><br><span class="line">&#125;</span><br><span class="line">-(void)safeMethod &#123; </span><br><span class="line">    [_lock lock];</span><br><span class="line">	//进行线程安全的操作代码</span><br><span class="line">    [_lock unlock];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>NSRecursiveLock</strong> 安全锁, 用法和NSLock基本一样, 不一样的是在同一个类中, 有多个方法使用同一个锁进行同步, 并且一个方法中调用另一个方法, 这时候就需要使用这个锁;示例代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@interface ThreadSafeClass () &#123; </span><br><span class="line">	NSRecursiveLock *_lock; </span><br><span class="line">&#125;</span><br><span class="line">@end</span><br><span class="line">-(instancetype)init &#123; </span><br><span class="line">    if(self = [super init]) &#123;</span><br><span class="line">		_lock = [NSRecursiveLock new]; </span><br><span class="line">	&#125;</span><br><span class="line">	return self; </span><br><span class="line">&#125;</span><br><span class="line">-(void)safeMethod1 &#123; </span><br><span class="line">    [_lock lock];</span><br><span class="line">	//进行线程安全的操作代码</span><br><span class="line">	[self safeMethod2];</span><br><span class="line">    [_lock unlock];</span><br><span class="line">&#125;</span><br><span class="line">-(void)safeMethod2 &#123; </span><br><span class="line">    [_lock lock];</span><br><span class="line">	//进行线程安全的操作代码</span><br><span class="line">    [_lock unlock];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>NSCondition</strong>  条件锁</p>
+<p>苹果官方文档解释如下:</p>
+<p>NSCondition类实现了一个条件变量，其语义遵循用于POSIX样式条件的语义。 条件对象在给定线程中充当锁和检查点。 锁在测试条件并执行由条件触发的任务时保护您的代码。 检查点行为要求在线程继续其任务之前条件为真。 当条件不成立时，线程阻塞。它一直处于阻塞状态，直到另一个线程发出信号通知条件对象;使用如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">-(IBAction)conditionTest:(id)sender</span><br><span class="line">&#123;</span><br><span class="line">    NSLog(@&quot;begin condition works!&quot;);</span><br><span class="line">    </span><br><span class="line">    //创建一个商品库</span><br><span class="line">    self.products = [[NSMutableArray alloc] init];</span><br><span class="line">    //初始化条件</span><br><span class="line">    self.condition = [[NSCondition alloc] init];</span><br><span class="line">    </span><br><span class="line">    [NSThread detachNewThreadSelector:@selector(createProducter) toTarget:self withObject:nil];</span><br><span class="line">    [NSThread detachNewThreadSelector:@selector(createConsumenr) toTarget:self withObject:nil];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//创建一个消费者</span><br><span class="line">- (void)createConsumenr &#123;</span><br><span class="line">    [self.condition lock];//进入锁定区域</span><br><span class="line">    </span><br><span class="line">    //判断库存, 如果为空 线程等待signal信号,</span><br><span class="line">    while ([self.products count] == 0) &#123;</span><br><span class="line">        NSLog(@&quot;wait for products&quot;);</span><br><span class="line">        [self.condition wait];</span><br><span class="line">    &#125;</span><br><span class="line">    //收到信号后开始消费商品,</span><br><span class="line">    [self.products removeObjectAtIndex:0];</span><br><span class="line">    NSLog(@&quot;comsume a product&quot;);</span><br><span class="line">    //离开锁定区</span><br><span class="line">    [self.condition unlock];</span><br><span class="line">&#125;</span><br><span class="line">//创建一个生产者</span><br><span class="line">- (void)createProducter &#123;</span><br><span class="line">    [self.condition lock];//进入锁定区域</span><br><span class="line">    //开始生产</span><br><span class="line">    [self.products addObject:[[NSObject alloc] init]];</span><br><span class="line">    NSLog(@&quot;produce a product&quot;);</span><br><span class="line">    //完成生产,发出信号告知其他线程当前完成</span><br><span class="line">    [self.condition signal];</span><br><span class="line">    //跳出锁定区域</span><br><span class="line">    [self.condition unlock];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p><strong>GCD的线程安全</strong></p>
+<p>暂时还没有研究, 等待补充, 今日有点晚了, 等有时间接着补充!</p>
+<p>​                                                                    2018-06-12 02:00:00记</p>
+</li>
+</ol>
+
+        
+    </article>
+    <footer class="cube-excerpt-footer">
+        <a class="cube-excerpt-more" href="/2018/06/12/多线程中的锁/">Read More</a>
+    </footer>
+</div>
+
+<div class="cube-excerpt" id="cube-excerpt-">
+    <header class="cube-excerpt-header">
         <h1><a href="/2018/01/06/理财总结/"></a></h1>
         <div class="cube-excerpt-header-msg">
             <div class="cube-excerpt-date">
@@ -525,61 +581,6 @@
     </footer>
 </div>
 
-<div class="cube-excerpt" id="cube-excerpt-">
-    <header class="cube-excerpt-header">
-        <h1><a href="/2016/08/24/NSCharacter​Set使用/"></a></h1>
-        <div class="cube-excerpt-header-msg">
-            <div class="cube-excerpt-date">
-                <i class="cube-icon cube-icon-date" aria-hidden="true"></i>
-                2016-08-24
-            </div>
-            <div class="cube-excerpt-tags">
-                <i class="cube-icon cube-icon-tag" aria-hidden="true"></i>
-                
-            </div>
-        </div>
-    </header>
-    <article class="cube-excerpt-entry cube-markdown">
-        
-        
-           <h1 id="NSCharacterSet使用"><a href="#NSCharacterSet使用" class="headerlink" title="NSCharacterSet使用"></a>NSCharacterSet使用</h1><p>=</p>
-<p>NSCharacterSet ，以及它的可变版本NSMutableCharacterSet，用面向对象的方式来表示一组Unicode字符。它经常与NSString及NSScanner组合起来使用，在不同的字符上做过滤、删除或者分割操作。为了给你提供这些字符是哪些字符的直观印象，请看看NSCharacterSet 提供的类方法：</p>
-<ul>
-<li>alphanumericCharacterSet                 //</li>
-<li>capitalizedLetterCharacterSet</li>
-<li>controlCharacterSet                 //控制符</li>
-<li>decimalDigitCharacterSet        //小数</li>
-<li>decomposableCharacterSet    //可分解</li>
-<li>illegalCharacterSet    //非法字符</li>
-<li>letterCharacterSet//文字</li>
-<li>lowercaseLetterCharacterSet//小写字母</li>
-<li>newlineCharacterSet     //回车</li>
-<li>nonBaseCharacterSet</li>
-<li>punctuationCharacterSet            //标点</li>
-<li>symbolCharacterSet</li>
-<li>uppercaseLetterCharacterSet </li>
-<li>whitespaceAndNewlineCharacterSet//回车和空格</li>
-<li>whitespaceCharacterSet    //空格</li>
-</ul>
-<p>与它的名字所表述的相反，NSCharacterSet 跟 NSSet 一点关系都没有。<br>虽然底层实现不太一样，但是 NSCharacterSet 在概念上跟 NSIndexSet 还有点相似的。NSIndexSet，之前提到过，表示一个有序的不重复的无符号整数的集合。Unicode字符跟无符号整数类似，大致对应一些拼写表示。所以，一个 NSCharacterSet +lowercaseCharacterSet 字符集与一个包含97到122范围的 NSIndexSet 是等价的。<br>现在我们对理解 NSCharacterSet 的基本概念已经有了少许自信，让我们来看一些它的模式与反模式吧：</p>
-<p>###删除字符产前后空格<br>NSString -stringByTrimmingCharactersInSet: 是个你需要牢牢记住的方法。它经常会传入 NSCharacterSet +whitespaceCharacterSet 和 +whitespaceAndNewlineCharacterSet 来删除输入字符串的头尾的空白符号, 或者传入uppercaseLetterCharacterSet和lowercaseLetterCharacterSet删除首尾大小写</p>
-<p>###删除字符串中所有空格<br>假设你去掉字符串两端的多余空格之后，还想去除单词之间的多余空格，这里有个非常简便的方法：</p>
-<pre><code>NSString *string = @&quot;Lorem    ipsum dolar   sit  amet.&quot;;
-string = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-
-NSArray *components = [string componentsSeparatedByCharactersInSet:[NSCharacterSet     whitespaceCharacterSet]];
-components = [components filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@&quot;self     &lt;&gt; &apos;&apos;&quot;]];
-string = [components componentsJoinedByString:@&quot; &quot;];
-</code></pre><p>首先，删除字符串首尾的空格；然后用 NSString -componentsSeparatedByCharactersInSet: 在空格处将字符串分割成一个 NSArray；再用一个 NSPredicate 去除空串；最后，用 NSArray -componentsJoinedByString: 用单个空格符将数组重新拼成字符串。注意：这种方法仅适用于英语这种用空格分割的语言</p>
-<p>###字符串分词<br>不要用 NSCharacterSet 来分词。 用 CFStringTokenizer 来替代它。<br>你用 componentsSeparatedByCharactersInSet: 来清理用户输入是可以谅解的，但是用它来做更复杂的事情，你将陷入痛苦的深渊。<br>为什么？请记住，语言并不是都用空格作为词的分界。虽然实际上以空格分界的语言使用非常广泛。但哪怕只算上中国和日本就已经有十多亿人，占了世界人口总量的 16%。<br>……即使是用空格分隔的语言，分词也有一些模棱两可的边界条件，特别是复合词汇和标点符号。<br>以上只为说明：如果你想将字符串分成有意义的单词，那么请用 CFStringTokenizer （或者 enumerateSubstringsInRange:options:usingBlock:）吧。</p>
-
-        
-    </article>
-    <footer class="cube-excerpt-footer">
-        <a class="cube-excerpt-more" href="/2016/08/24/NSCharacter​Set使用/">Read More</a>
-    </footer>
-</div>
-
 
 
 <ul class="cube-pagination cube-pagination-6">
@@ -651,7 +652,7 @@ string = [components componentsJoinedByString:@&quot; &quot;];
     <a title="Coding, Runing, Sharing">Coding, Runing, Sharing</a>
     
     <div class="count">
-        <a class="count articles"><span>11</span>Article</a>
+        <a class="count articles"><span>12</span>Article</a>
         <a class="count tags"><span>0</span>Tags</a>
         <a class="count categories"><span>0</span>Categories</a>
     </div>
@@ -690,7 +691,7 @@ string = [components componentsJoinedByString:@&quot; &quot;];
                     <span>1</span>
                 </p>
                 <p class="title">
-                    <a href="/2018/01/06/理财总结/" title=""></a>
+                    <a href="/2018/06/12/多线程中的锁/" title=""></a>
                 </p>
             </div>
             
@@ -704,7 +705,7 @@ string = [components componentsJoinedByString:@&quot; &quot;];
                     <span>2</span>
                 </p>
                 <p class="title">
-                    <a href="/2017/08/24/iOS开发之VFL布局总结/" title=""></a>
+                    <a href="/2018/01/06/理财总结/" title=""></a>
                 </p>
             </div>
         </li>
@@ -717,7 +718,7 @@ string = [components componentsJoinedByString:@&quot; &quot;];
                     <span>3</span>
                 </p>
                 <p class="title">
-                    <a href="/2017/08/18/iOS开发 const 和 static 关键字的作用/" title=""></a>
+                    <a href="/2017/08/24/iOS开发之VFL布局总结/" title=""></a>
                 </p>
             </div>
         </li>
@@ -730,7 +731,7 @@ string = [components componentsJoinedByString:@&quot; &quot;];
                     <span>4</span>
                 </p>
                 <p class="title">
-                    <a href="/2017/06/16/画图/" title=""></a>
+                    <a href="/2017/08/18/iOS开发 const 和 static 关键字的作用/" title=""></a>
                 </p>
             </div>
         </li>
@@ -743,7 +744,7 @@ string = [components componentsJoinedByString:@&quot; &quot;];
                     <span>5</span>
                 </p>
                 <p class="title">
-                    <a href="/2017/06/08/数组中取出最大值/" title=""></a>
+                    <a href="/2017/06/16/画图/" title=""></a>
                 </p>
             </div>
         </li>
